@@ -18,27 +18,29 @@ public class MainViewModel extends ViewModel {
 
     //כל הפעולות של EXERCISE
     public void vTimes10(){
-        exercise.setNum1(exercise.generateNumbers(0,10));
-        exercise.setNum2(exercise.generateNumbers(0,10));
+        //exercise.setNum1(exercise.generateNumbers(0,10));
+        //exercise.setNum2(exercise.generateNumbers(0,10));
     }
     public void vChallenge(){
-        exercise.setNum1(exercise.generateNumbers(0,10));
-        exercise.setNum2(exercise.generateNumbers(10,100));
+        exercise.generateNum1(10,100);
+        exercise.generateNum2(10,100);
+        vNum1.setValue(exercise.getNum1());
+        vNum2.setValue(exercise.getNum2());
     }
     public void vTimes20(){
-        exercise.setNum1(exercise.generateNumbers(0,20));
-        exercise.setNum2(exercise.generateNumbers(0,20));
+        //exercise.setNum1(exercise.generateNumbers(0,20));
+        //exercise.setNum2(exercise.generateNumbers(0,20));
     }
     /*
         Check Answers
      */
     public void vCheck(){
-        if(exercise.checkAnswers(tvAnswer.getText().toString())){
-            createToast(Toast.LENGTH_LONG, "Correct Answer");
-
-        } else{
-            createToast(Toast.LENGTH_LONG, "Wrong Answer");
-        }
+//        if(exercise.checkAnswers(tvAnswer.getText().toString())){
+//            createToast(Toast.LENGTH_LONG, "Correct Answer");
+//
+//        } else{
+//            createToast(Toast.LENGTH_LONG, "Wrong Answer");
+//        }
 
     }
 

@@ -32,12 +32,21 @@ public class Exercise {
     /*
     Generate Numbers for challenge
      */
-    public int generateNumbers(int min, int max){
+    public void generateNum1(int min, int max){
         Random r=new Random();
         int sum = max-min; // otherwise if received (10, 20) max will be 30
         int randomNum = r.nextInt(sum)+min;
-        return randomNum;
+        num1= randomNum;
     }
+    public void generateNum2(int min, int max) {
+        Random r = new Random();
+        int sum = max - min; // otherwise if received (10, 20) max will be 30
+        int randomNum = r.nextInt(sum) + min;
+        num2 = randomNum;
+    }
+
+
+
     /*
     Check Answer
      */

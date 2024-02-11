@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes10();
-                updateViews();
+                //updateViews();
             }
         });
         /*
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes20();
-                updateViews();
+                //updateViews();
 
             }
         });
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vChallenge();
-                updateViews();
+                //updateViews();
             }
         });
         /*
@@ -82,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
         BtnCheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(exercise.checkAnswers(tvAnswer.getText().toString())){
-                    createToast(Toast.LENGTH_LONG, "Correct Answer");
-
-                } else{
-                    createToast(Toast.LENGTH_LONG, "Wrong Answer");
-                }
+//                if(exercise.checkAnswers(tvAnswer.getText().toString())){
+//                    createToast(Toast.LENGTH_LONG, "Correct Answer");
+//
+//                } else{
+//                    createToast(Toast.LENGTH_LONG, "Wrong Answer");
+//                }
 
 
             }
@@ -96,18 +96,18 @@ public class MainActivity extends AppCompatActivity {
     /*
      Update the text
      */
-    public void updateViews(){
-        tvNum1.setText(exercise.getNum1()+"");
-        tvNum2.setText(exercise.getNum2()+"");
-    }
+//    public void updateViews(){
+//        tvNum1.setText(exercise.getNum1()+"");
+//        tvNum2.setText(exercise.getNum2()+"");
+//    }
 
     /*
      * Create toast (popup message)
      */
-    public void createToast(int duration, String text){
-        Toast toast = Toast.makeText(this, text, duration);
-        toast.show();
-    }
+//    public void createToast(int duration, String text){
+//        Toast toast = Toast.makeText(this, text, duration);
+//        toast.show();
+//    }
 
 
 }
