@@ -1,6 +1,9 @@
 package com.example.mathexerciseproject;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.Random;
 
+
 public class MainActivity extends AppCompatActivity {
     private Button BtnTimes10;
     private Button BtnTimes20;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
 
+    //MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         onClickListener();
+
     }
 
     public void initViews(){
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         tvNum1 = findViewById(R.id.tvNum1);
         tvNum2 = findViewById(R.id.tvNum2);
         vMain = new MainViewModel();
+        vMain = new ViewModelProvider(this,new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
 
     }
 
@@ -93,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //public void
     /*
      Update the text
      */
@@ -108,6 +116,19 @@ public class MainActivity extends AppCompatActivity {
 //        Toast toast = Toast.makeText(this, text, duration);
 //        toast.show();
 //    }
+    public void models(){
+        vMain.vNum1.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable @androidx.annotation.Nullable Integer num1) {
 
+            }
+        });
+        vMain.vNum2.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable @androidx.annotation.Nullable Integer num2) {
+
+            }
+        });
+    }
 
 }
