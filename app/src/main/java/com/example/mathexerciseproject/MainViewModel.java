@@ -1,8 +1,8 @@
 package com.example.mathexerciseproject;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.widget.Toast;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
     MutableLiveData<Integer> vNum1;

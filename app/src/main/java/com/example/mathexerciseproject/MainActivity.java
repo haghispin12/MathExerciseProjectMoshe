@@ -1,10 +1,5 @@
 package com.example.mathexerciseproject;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +7,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import org.jetbrains.annotations.Nullable;
 import org.w3c.dom.Text;
 
 import java.util.Random;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         tvNum1 = findViewById(R.id.tvNum1);
         tvNum2 = findViewById(R.id.tvNum2);
         vMain = new MainViewModel();
-        vMain = new ViewModelProvider(this,new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
+        vMain = new ViewModelProvider(this).get(MainViewModel.class);
 
     }
 
