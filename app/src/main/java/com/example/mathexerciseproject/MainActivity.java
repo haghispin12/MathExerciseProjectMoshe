@@ -27,14 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
 
-    //MainViewModel mainViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
         onClickListener();
+        models();
 
     }
 
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes10();
-                //updateViews();
+
             }
         });
         /*
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes20();
-                //updateViews();
+
 
             }
         });
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vChallenge();
-                //updateViews();
             }
         });
         /*
@@ -89,33 +87,27 @@ public class MainActivity extends AppCompatActivity {
         BtnCheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(exercise.checkAnswers(tvAnswer.getText().toString())){
-//                    createToast(Toast.LENGTH_LONG, "Correct Answer");
-//
-//                } else{
-//                    createToast(Toast.LENGTH_LONG, "Wrong Answer");
-//                }
-
-
+                String mAnswer = tvAnswer.getText().toString();
+                if(vMain.vCheck(mAnswer)){
+                    createToast(Toast.LENGTH_LONG, "Correct Answer");
+                }else{
+                    createToast(Toast.LENGTH_LONG, "Wrong Answer");
+                }
             }
         });
     }
-    //public void
-    /*
-     Update the text
-     */
-//    public void updateViews(){
-//        tvNum1.setText(exercise.getNum1()+"");
-//        tvNum2.setText(exercise.getNum2()+"");
-//    }
 
     /*
      * Create toast (popup message)
      */
-//    public void createToast(int duration, String text){
-//        Toast toast = Toast.makeText(this, text, duration);
-//        toast.show();
-//    }
+
+    public void createToast(int duration, String text){
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+    }
+    /*
+     * Models
+     */
     public void models(){
         vMain.vNum1.observe(this, new Observer<Integer>() {
             @Override

@@ -18,8 +18,10 @@ public class MainViewModel extends ViewModel {
 
     //כל הפעולות של EXERCISE
     public void vTimes10(){
-        //exercise.setNum1(exercise.generateNumbers(0,10));
-        //exercise.setNum2(exercise.generateNumbers(0,10));
+        exercise.generateNum1(0,10);
+        exercise.generateNum2(0,10);
+        vNum1.setValue(exercise.getNum1());
+        vNum2.setValue(exercise.getNum2());
     }
     public void vChallenge(){
         exercise.generateNum1(10,100);
@@ -28,20 +30,20 @@ public class MainViewModel extends ViewModel {
         vNum2.setValue(exercise.getNum2());
     }
     public void vTimes20(){
-        //exercise.setNum1(exercise.generateNumbers(0,20));
-        //exercise.setNum2(exercise.generateNumbers(0,20));
+        exercise.generateNum1(0,20);
+        exercise.generateNum2(0,20);
+        vNum1.setValue(exercise.getNum1());
+        vNum2.setValue(exercise.getNum2());
     }
     /*
         Check Answers
      */
-    public void vCheck(){
-//        if(exercise.checkAnswers(tvAnswer.getText().toString())){
-//            createToast(Toast.LENGTH_LONG, "Correct Answer");
-//
-//        } else{
-//            createToast(Toast.LENGTH_LONG, "Wrong Answer");
-//        }
-
+    public boolean vCheck(String answer){
+        if(exercise.checkAnswers(answer)){
+            return true;
+        } else{
+            return false;
+        }
     }
 
 }
