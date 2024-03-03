@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.jetbrains.annotations.Nullable;
 import org.w3c.dom.Text;
 
+import java.time.Duration;
 import java.util.Random;
 
 
@@ -27,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum1;
     private TextView tvNum2;
     private MainViewModel vMain;
+    private Button btnRate;
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                int myRate = result.getData().getIntExtra("Rating", -1);
+                createToast(Toast.LENGTH_LONG,myRate+"");
+            }
+    });
 
 
     @Override
@@ -42,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void myIntents(){
         Intent intent = getIntent();
         String userName=intent.getStringExtra("user");
+
         setTitle(userName);
     }
 
@@ -55,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         tvNum2 = findViewById(R.id.tvNum2);
         vMain = new MainViewModel();
         vMain = new ViewModelProvider(this).get(MainViewModel.class);
+        btnRate = findViewById(R.id.btnRate);
 
     }
 
@@ -103,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        /*
+        Go to rate page
+         */
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RateActivity.class);
+                activityResultLauncher.launch(intent);
+            }
+        });
     }
 
     /*
@@ -113,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
+
     /*
      * Models
      */
@@ -120,13 +148,13 @@ public class MainActivity extends AppCompatActivity {
         vMain.vNum1.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable @androidx.annotation.Nullable Integer num1) {
-
+                tvNum1.setText(num1+"");
             }
         });
         vMain.vNum2.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable @androidx.annotation.Nullable Integer num2) {
-
+                tvNum2.setText(num2+"");
             }
         });
     }

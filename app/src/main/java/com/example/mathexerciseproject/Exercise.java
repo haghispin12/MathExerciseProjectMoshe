@@ -34,13 +34,13 @@ public class Exercise {
      */
     public void generateNum1(int min, int max){
         Random r=new Random();
-        int sum = max-min; // otherwise if received (10, 20) max will be 30
+        int sum = max-min;
         int randomNum = r.nextInt(sum)+min;
         num1= randomNum;
     }
     public void generateNum2(int min, int max) {
         Random r = new Random();
-        int sum = max - min; // otherwise if received (10, 20) max will be 30
+        int sum = max - min;
         int randomNum = r.nextInt(sum) + min;
         num2 = randomNum;
     }

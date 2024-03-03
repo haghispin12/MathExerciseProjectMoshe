@@ -11,9 +11,9 @@ public class MainViewModel extends ViewModel {
 
 
     public MainViewModel(){
-        Exercise vExercise = new Exercise();
         vNum1 = new MutableLiveData<>();
         vNum2 = new MutableLiveData<>();
+        exercise = new Exercise();
     }
 
     //כל הפעולות של EXERCISE
