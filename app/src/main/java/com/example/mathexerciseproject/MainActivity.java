@@ -24,6 +24,9 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
+    /*
+    Variable list
+     */
     private Button BtnTimes10;
     private Button BtnTimes20;
     private Button BtnCheckAnswer;
@@ -33,34 +36,47 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
     private Button btnRate;
+    private Button btnClose;
+
+    /*
+    Return to MainActivity from RateActivity
+     */
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(),
         new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
                 int myRate = result.getData().getIntExtra("Rating", -1);
-                createToast(Toast.LENGTH_LONG,myRate+"");
+                createToast(Toast.LENGTH_LONG,"You rated "+myRate+"");
             }
     });
 
-
+    /*
+    On create
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        onClickListener();
-        models();
+        onClickListeners();
+        Observers();
         myIntents();
 
     }
+    /*
+    Receive all intents prior to MainActivity.onCreate
+     */
     public void myIntents(){
         Intent intent = getIntent();
         String userName=intent.getStringExtra("user");
-
         setTitle(userName);
+        vMain.setUserName(userName);
+        createToast(Toast.LENGTH_SHORT,vMain.vUser.getUserName());
     }
-
+    /*
+    Construct all variables from list
+     */
     public void initViews(){
         BtnTimes10 = findViewById(R.id.BtnTimes10);
         BtnTimes20 = findViewById(R.id.btnTimes20);
@@ -72,10 +88,13 @@ public class MainActivity extends AppCompatActivity {
         vMain = new MainViewModel();
         vMain = new ViewModelProvider(this).get(MainViewModel.class);
         btnRate = findViewById(R.id.btnRate);
+        btnClose = findViewById(R.id.btnClose);
 
     }
-
-    public void onClickListener(){
+    /*
+    All of the on click listeners
+     */
+    public void onClickListeners(){
         /*
         * challenge till 10 (לוח כפל)
          */
@@ -112,11 +131,13 @@ public class MainActivity extends AppCompatActivity {
         BtnCheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int num = vMain.vExercise.getNum1()*vMain.vExercise.getNum2();
                 String mAnswer = tvAnswer.getText().toString();
                 if(vMain.vCheck(mAnswer)){
-                    createToast(Toast.LENGTH_LONG, "Correct Answer");
+                    createToast(Toast.LENGTH_SHORT, "Correct Answer");
                 }else{
-                    createToast(Toast.LENGTH_LONG, "Wrong Answer");
+                    createToast(Toast.LENGTH_SHORT, "Wrong Answer");
+                    createToast(Toast.LENGTH_SHORT, "The answer is "+num);
                 }
             }
         });
@@ -130,21 +151,27 @@ public class MainActivity extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     /*
      * Create toast (popup message)
      */
-
     public void createToast(int duration, String text){
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
     }
 
+
     /*
-     * Models
+     * Observers that track any changes on num1 and num2
      */
-    public void models(){
+    public void Observers(){
         vMain.vNum1.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable @androidx.annotation.Nullable Integer num1) {

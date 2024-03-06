@@ -5,6 +5,7 @@ import java.util.Random;
 public class Exercise {
     private int num1;
     private int num2;
+    private int num3;
 
 
     /*
@@ -51,7 +52,8 @@ public class Exercise {
     Check Answer
      */
     public boolean checkAnswers(String answer) {
-        if (Integer.valueOf(answer) == (num1 * num2)) {
+        num3 = num1*num2;
+        if (Integer.valueOf(answer) == num3) {
             return true;
         } else{
             return false;
