@@ -1,6 +1,8 @@
 package com.example.mathexerciseproject;
 
 
+import android.widget.TextView;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -50,5 +52,14 @@ public class MainViewModel extends ViewModel {
             return false;
         }
     }
-
+    public void addScore(){
+        int originalScore = vUser.getScore();
+        originalScore+=vExercise.getBet();
+        vUser.setScore(originalScore);
+    }
+    public void lowerScore(){
+        int originalScore = vUser.getScore();
+        originalScore-=vExercise.getBet();
+        vUser.setScore(originalScore);
+    }
 }

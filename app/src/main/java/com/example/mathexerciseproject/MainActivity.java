@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
     private Button btnRate;
-    private Button btnClose;
 
     /*
     Return to MainActivity from RateActivity
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main1);
         initViews();
         onClickListeners();
         Observers();
@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         vMain = new MainViewModel();
         vMain = new ViewModelProvider(this).get(MainViewModel.class);
         btnRate = findViewById(R.id.btnRate);
-        btnClose = findViewById(R.id.btnClose);
 
     }
     /*
@@ -102,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes10();
+                vMain.vExercise.setBet(10);
 
             }
         });
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vTimes20();
-
+                vMain.vExercise.setBet(20);
 
             }
         });
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vMain.vChallenge();
+                vMain.vExercise.setBet(50);
             }
         });
         /*
@@ -135,9 +136,11 @@ public class MainActivity extends AppCompatActivity {
                 String mAnswer = tvAnswer.getText().toString();
                 if(vMain.vCheck(mAnswer)){
                     createToast(Toast.LENGTH_SHORT, "Correct Answer");
+                    vMain.addScore();
                 }else{
                     createToast(Toast.LENGTH_SHORT, "Wrong Answer");
                     createToast(Toast.LENGTH_SHORT, "The answer is "+num);
+                    vMain.lowerScore();
                 }
             }
         });
@@ -149,12 +152,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RateActivity.class);
                 activityResultLauncher.launch(intent);
-            }
-        });
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
     }

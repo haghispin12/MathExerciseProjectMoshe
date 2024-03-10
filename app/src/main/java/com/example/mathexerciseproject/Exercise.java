@@ -6,6 +6,7 @@ public class Exercise {
     private int num1;
     private int num2;
     private int num3;
+    private Integer bet = new Integer(0);
 
 
     /*
@@ -18,6 +19,8 @@ public class Exercise {
     public int getNum2() {
         return num2;
     }
+
+    public int getBet() {return bet;}
     /*
     setters
      */
@@ -30,9 +33,13 @@ public class Exercise {
         this.num2 = num2;
     }
 
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+
     /*
-    Generate Numbers for challenge
-     */
+        Generate Numbers for challenge
+         */
     public void generateNum1(int min, int max){
         Random r=new Random();
         int sum = max-min;
