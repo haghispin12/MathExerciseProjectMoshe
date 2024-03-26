@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,8 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     /*
     Variable list
      */
+    private Button btnMain;
+    private Button btnUser;
     private Button BtnTimes10;
     private Button BtnTimes20;
     private Button BtnCheckAnswer;
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
     private Button btnRate;
+    private Fragment frag;
+
 
     /*
     Return to MainActivity from RateActivity
@@ -78,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
     Construct all variables from list
      */
     public void initViews(){
+        btnMain = findViewById(R.id.btnMain);
+        btnUser = findViewById(R.id.btnUser);
         BtnTimes10 = findViewById(R.id.BtnTimes10);
         BtnTimes20 = findViewById(R.id.btnTimes20);
         BtnChallenge = findViewById(R.id.BtnChallenge);
@@ -94,6 +103,17 @@ public class MainActivity extends AppCompatActivity {
     All of the on click listeners
      */
     public void onClickListeners(){
+        /*
+        btnUser
+         */
+        btnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                frag = new BlankFragment();
+                FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+                trans.commit();
+            }
+        });
         /*
         * challenge till 10 (לוח כפל)
          */

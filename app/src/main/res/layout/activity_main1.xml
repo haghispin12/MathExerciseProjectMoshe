@@ -16,6 +16,7 @@
         >
 
         <Button
+            android:id="@+id/btnMain"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,6 +30,7 @@
             android:textSize="25dp"
             />
         <Button
+            android:id="@+id/btnUser"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
