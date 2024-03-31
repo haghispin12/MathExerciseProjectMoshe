@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel vMain;
     private Button btnRate;
     private Fragment frag;
+    private FragmentTransaction trans;
+    int num1 =0;
+
 
 
     /*
@@ -109,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
         btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                frag = new BlankFragment();
-                FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+                trans = getSupportFragmentManager().beginTransaction();
+                trans.add(R.id.fragmentShowUsers, new ShowUsers());
                 trans.commit();
             }
         });
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         BtnTimes10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(num1<=0)){num1--;}
                 vMain.vTimes10();
                 vMain.vExercise.setBet(10);
 
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         BtnTimes20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(num1<=0)){num1--;}
                 vMain.vTimes20();
                 vMain.vExercise.setBet(20);
 
@@ -142,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         BtnChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(num1<=0)){num1--;}
                 vMain.vChallenge();
                 vMain.vExercise.setBet(50);
             }
@@ -154,13 +160,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int num = vMain.vExercise.getNum1()*vMain.vExercise.getNum2();
                 String mAnswer = tvAnswer.getText().toString();
-                if(vMain.vCheck(mAnswer)){
+                if(vMain.vCheck(mAnswer)&& num1==0){
                     createToast(Toast.LENGTH_SHORT, "Correct Answer");
                     vMain.addScore();
-                }else{
+                    if(!(num1>0)){num1++;}
+                }else if(num1==0){
                     createToast(Toast.LENGTH_SHORT, "Wrong Answer");
                     createToast(Toast.LENGTH_SHORT, "The answer is "+num);
                     vMain.lowerScore();
+                    if(!(num1>0)){num1++;}
                 }
             }
         });

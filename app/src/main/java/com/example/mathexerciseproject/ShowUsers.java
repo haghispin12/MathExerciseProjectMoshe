@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class BlankFragment extends Fragment {
+public class ShowUsers extends Fragment {
     private EditText etUser;
     private TextView tvScore;
     private TextView tvRating;
@@ -33,11 +33,11 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_showusers, container, false);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        initviews(view);
+        initViews(view);
         return view;
     }
 
-    private void initviews(View v) {
+    private void initViews(View v) {
         etUser = v.findViewById(R.id.etUser);
         tvScore = v.findViewById(R.id.tvScore);
         tvRating = v.findViewById(R.id.tvRating);
