@@ -2,7 +2,7 @@ package com.example.mathexerciseproject;
 
 
 import android.widget.TextView;
-
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,6 +11,7 @@ public class MainViewModel extends ViewModel {
     MutableLiveData<Integer> vNum2;
     Exercise vExercise;
     User vUser;
+
 
 
     public MainViewModel(){
@@ -62,4 +63,11 @@ public class MainViewModel extends ViewModel {
         originalScore-=vExercise.getBet();
         vUser.setScore(originalScore);
     }
+    /*
+    Getters and setters
+     */
+    public int getUserScore(){return vUser.getScore();}
+    public int getUserRating(){return vUser.getRate();}
+    public String getUserName(){return vUser.getUserName();}
+    public void setUserRate(int num){vUser.setRate(num);}
 }

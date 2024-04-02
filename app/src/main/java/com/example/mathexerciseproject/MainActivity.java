@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     /*
     Variable list
      */
+
     private Button btnMain;
     private Button btnUser;
     private Button BtnTimes10;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvNum2;
     private MainViewModel vMain;
     private Button btnRate;
-    private Fragment frag;
     private FragmentTransaction trans;
     int num1 =0;
 
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(ActivityResult result) {
                 int myRate = result.getData().getIntExtra("Rating", -1);
+                vMain.setUserRate(myRate);
                 createToast(Toast.LENGTH_LONG,"You rated "+myRate+"");
             }
     });
@@ -112,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
         btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 trans = getSupportFragmentManager().beginTransaction();
-                trans.add(R.id.fragmentShowUsers, new ShowUsers());
+                trans.add(R.id.MainFrame, new ShowUsers());
                 trans.commit();
             }
         });
