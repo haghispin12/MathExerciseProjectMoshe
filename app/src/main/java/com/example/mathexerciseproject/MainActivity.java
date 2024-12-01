@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Variable list
      */
 
-    private Button btnMain;
+    private Button btnFruit;
     private Button btnUser;
     private Button BtnTimes10;
     private Button BtnTimes20;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     Construct all variables from list
      */
     public void initViews(){
-        btnMain = findViewById(R.id.btnMain);
+        btnFruit = findViewById(R.id.btnFruit);
         btnUser = findViewById(R.id.btnUser);
         BtnTimes10 = findViewById(R.id.BtnTimes10);
         BtnTimes20 = findViewById(R.id.btnTimes20);
@@ -182,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RateActivity.class);
                 activityResultLauncher.launch(intent);
+            }
+        });
+        btnFruit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowAllUsers.class);
+                startActivity(intent);
             }
         });
     }

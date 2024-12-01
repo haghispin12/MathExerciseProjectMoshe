@@ -38,7 +38,7 @@ public class ShowUsers extends Fragment {
     private ImageView ivPFP;
     private Button btnAddUser;
     private MainViewModel vMain;
-    private Button btnMain;
+    private Button btnFruit;
     private Intent intent;
     Uri uri;
 
@@ -84,7 +84,7 @@ public class ShowUsers extends Fragment {
         btnAddPicture = v.findViewById(R.id.btnAddPicture);
         ivPFP = v.findViewById(R.id.ivPFP);
         btnAddUser = v.findViewById(R.id.btnAddUser);
-        btnMain = v.findViewById(R.id.btnMain);
+        btnFruit = v.findViewById(R.id.btnFruit);
     }
     public void onClickListeners(){
         btnAddPicture.setOnClickListener(new View.OnClickListener() {
