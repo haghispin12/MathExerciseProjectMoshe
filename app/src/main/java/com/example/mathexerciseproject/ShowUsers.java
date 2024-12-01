@@ -1,5 +1,8 @@
 package com.example.mathexerciseproject;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +40,16 @@ public class ShowUsers extends Fragment {
     private MainViewModel vMain;
     private Button btnMain;
     private Intent intent;
+    Uri uri;
 
     ActivityResultLauncher<Intent> startCamera = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-
+                    if(result.getResultCode()==RESULT_OK){
+                        ivPFP.setImageURI(uri);
+                    }
                 }
             });
 
@@ -58,6 +65,7 @@ public class ShowUsers extends Fragment {
         vMain = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         initViews(view);
         updateViews();
+        onClickListeners();
         return view;
     }
 
@@ -77,5 +85,20 @@ public class ShowUsers extends Fragment {
         ivPFP = v.findViewById(R.id.ivPFP);
         btnAddUser = v.findViewById(R.id.btnAddUser);
         btnMain = v.findViewById(R.id.btnMain);
+    }
+    public void onClickListeners(){
+        btnAddPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE, "New Picture");
+                values.put(MediaStore.Images.Media.DESCRIPTION, "From Camera");
+                uri =
+                        requireContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startCamera.launch(cameraIntent);
+            }
+        });
     }
 }
