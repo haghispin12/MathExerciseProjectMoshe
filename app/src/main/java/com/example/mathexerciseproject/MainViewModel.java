@@ -1,10 +1,14 @@
 package com.example.mathexerciseproject;
 
 
+import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
     MutableLiveData<Integer> vNum1;
@@ -70,4 +74,12 @@ public class MainViewModel extends ViewModel {
     public int getUserRating(){return vUser.getRate();}
     public String getUserName(){return vUser.getUserName();}
     public void setUserRate(int num){vUser.setRate(num);}
+
+    public long dbAddUser(Context context){
+        DBHelper dbHelper = new DBHelper(context);
+
+        long id= dbHelper.insert(vUser, context);
+        Log.d("responseId", "id = "+id);
+        return id;
+    }
 }

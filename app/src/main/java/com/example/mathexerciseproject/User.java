@@ -1,5 +1,6 @@
 package com.example.mathexerciseproject;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 public class User {
@@ -7,13 +8,26 @@ public class User {
     private int Score;
     private int Rate;
     private Long id;
+    Bitmap bitmap;
     Uri uri;
 
+    public User(Long id, String userName, int rate, Bitmap bitmap, int score) {
+        UserName = userName;
+        Score = score;
+        Rate = rate;
+        this.id = id;
+        this.bitmap = bitmap;
+    }
+
+    public User() {
+    }
 
     /*
-    getters
-     */
+            getters
+             */
     public Long getId() {return id;}
+
+    public Bitmap getBitmap() {return bitmap;}
 
     public Uri getUri() {return uri;}
 

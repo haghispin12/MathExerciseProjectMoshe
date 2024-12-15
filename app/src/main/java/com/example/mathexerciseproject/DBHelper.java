@@ -12,7 +12,6 @@ import android.provider.MediaStore;
 
 import androidx.annotation.Nullable;
 
-//import com.hag.mathexerciseproject.classesModel.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -115,28 +114,28 @@ public class DBHelper extends SQLiteOpenHelper {
 //
 //        }
 //
-//        // return all rows in table
-//        public ArrayList<User> selectAll(){
-//            database = getReadableDatabase(); // get access to read the database
-//            ArrayList<User> users = new ArrayList<>();
-//            Cursor cursor = database.query(TABLE_RECORD, allColumns, null, null, null, null, null); // cursor points at a certain row
-//            if (cursor.getCount() > 0) {
-//                while (cursor.moveToNext()) {
-//                    String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
-//                    int rating = cursor.getInt(cursor.getColumnIndex(COLUMN_RATE));
-//                    int score = cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
-//                    byte[] bytes = cursor.getBlob(cursor.getColumnIndex(COLUMN_PICTURE));
-//
-//                    Bitmap bitmap = getImage(bytes);
-//                    long id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
-//                    User user= new User(id,name,rating,bitmap,score);
-//                    users.add(user);
-//                }
-//            }
-//            cursor.close();
-//            database.close();
-//            return users;
-//        }
+        // return all rows in table
+        public ArrayList<User> selectAll(){
+            database = getReadableDatabase(); // get access to read the database
+            ArrayList<User> users = new ArrayList<>();
+            Cursor cursor = database.query(TABLE_RECORD, allColumns, null, null, null, null, null); // cursor points at a certain row
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+                    int rating = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATE));
+                    int score = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SCORE));
+                    byte[] bytes = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_PICTURE));
+
+                    Bitmap bitmap = getImage(bytes);
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                    User user= new User(id,name,rating,bitmap,score);
+                    users.add(user);
+                }
+            }
+            cursor.close();
+            database.close();
+            return users;
+        }
 //
 //        //
 //        // I prefer using this one...
@@ -192,10 +191,9 @@ public class DBHelper extends SQLiteOpenHelper {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
-}
-//    // convert from byte array to bitmap
-//    private  Bitmap getImage(byte[] image) {
-//        return BitmapFactory.decodeByteArray(image, 0, image.length);
-//    }
-//
-//    }
+
+    // convert from byte array to bitmap
+    private  Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+    }

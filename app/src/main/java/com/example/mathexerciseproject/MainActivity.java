@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     All of the on click listeners
      */
     public void onClickListeners(){
+
         /*
         btnUser
          */

@@ -49,6 +49,7 @@ public class ShowUsers extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode()==RESULT_OK){
                         ivPFP.setImageURI(uri);
+                        vMain.vUser.setUri(uri);
                     }
                 }
             });
@@ -87,6 +88,21 @@ public class ShowUsers extends Fragment {
         btnFruit = v.findViewById(R.id.btnFruit);
     }
     public void onClickListeners(){
+        /*
+        Button addUser
+         */
+        btnAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getActivity()!=null) {
+                    long id = vMain.dbAddUser(getContext());
+                    Toast.makeText(getActivity(), "Insert row id "+id, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        /*
+        button AddPicture
+         */
         btnAddPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
