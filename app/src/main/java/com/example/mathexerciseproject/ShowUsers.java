@@ -29,6 +29,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 
 public class ShowUsers extends Fragment {
     private EditText etUser;
@@ -96,7 +98,7 @@ public class ShowUsers extends Fragment {
             public void onClick(View view) {
                 if(getActivity()!=null) {
                     long id = vMain.dbAddUser(getContext());
-                    Toast.makeText(getActivity(), "Insert row id "+id, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "id= "+id, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -117,4 +119,5 @@ public class ShowUsers extends Fragment {
             }
         });
     }
+
 }

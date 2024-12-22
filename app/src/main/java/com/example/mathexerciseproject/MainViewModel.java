@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class MainViewModel extends ViewModel {
     MutableLiveData<Integer> vNum1;
     MutableLiveData<Integer> vNum2;
+    MutableLiveData<ArrayList<User>> vArrUser;
     Exercise vExercise;
     User vUser;
 

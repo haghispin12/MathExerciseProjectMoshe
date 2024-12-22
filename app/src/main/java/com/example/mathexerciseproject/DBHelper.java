@@ -80,6 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
 
+
         long id = database.insert(TABLE_RECORD, null, values);
         user.setId(id);
         database.close();
