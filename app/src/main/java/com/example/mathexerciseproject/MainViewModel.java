@@ -22,6 +22,7 @@ public class MainViewModel extends ViewModel {
     public MainViewModel(){
         vNum1 = new MutableLiveData<>();
         vNum2 = new MutableLiveData<>();
+        vArrUser = new MutableLiveData<>(new ArrayList<>());
         vExercise = new Exercise();
         vUser = new User();
     }
@@ -67,6 +68,15 @@ public class MainViewModel extends ViewModel {
         int originalScore = vUser.getScore();
         originalScore-=vExercise.getBet();
         vUser.setScore(originalScore);
+    }
+    /*
+    Grab all current users from the database, and insert into Array (vArrUser)
+     */
+    public void dbSelectAll(Context context){
+        DBHelper dbHelper = new DBHelper(context);
+
+        ArrayList<User> tmp = dbHelper.selectAll();
+        vArrUser.setValue(tmp);
     }
     /*
     Getters and setters

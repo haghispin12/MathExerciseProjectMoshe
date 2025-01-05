@@ -69,6 +69,8 @@ public class ShowUsers extends Fragment {
         initViews(view);
         updateViews();
         onClickListeners();
+        Observers();
+        vMain.dbSelectAll(getActivity());
         return view;
     }
 
@@ -88,6 +90,7 @@ public class ShowUsers extends Fragment {
         ivPFP = v.findViewById(R.id.ivPFP);
         btnAddUser = v.findViewById(R.id.btnAddUser);
         btnFruit = v.findViewById(R.id.btnFruit);
+
     }
     public void onClickListeners(){
         /*
@@ -119,5 +122,13 @@ public class ShowUsers extends Fragment {
             }
         });
     }
+    public void Observers(){
+        vMain.vArrUser.observe(requireActivity(), new Observer<ArrayList<User>>() {
+            @Override
+            public void onChanged(ArrayList<User> users) {
+               int n =10;
+            }
+        });
 
+    }
 }
