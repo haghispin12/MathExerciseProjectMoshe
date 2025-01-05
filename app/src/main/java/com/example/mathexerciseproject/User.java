@@ -8,6 +8,7 @@ public class User {
     private int Score;
     private int Rate;
     private Long id;
+    private int image;
     Bitmap bitmap;
     Uri uri;
 
@@ -56,4 +57,8 @@ public class User {
     }
 
     public void setRate(int rate) {this.Rate = rate;}
+
+    public int getImage() {
+        return image;
+    }
 }

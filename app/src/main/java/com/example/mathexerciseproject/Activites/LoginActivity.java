@@ -1,19 +1,16 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.Activites;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Map;
-import java.util.Set;
+import com.example.mathexerciseproject.MainActivity;
+import com.example.mathexerciseproject.R;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etUsername;

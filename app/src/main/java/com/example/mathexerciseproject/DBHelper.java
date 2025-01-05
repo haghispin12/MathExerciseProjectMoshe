@@ -126,10 +126,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     int rating = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATE));
                     int score = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SCORE));
                     byte[] bytes = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_PICTURE));
-
                     Bitmap bitmap = getImage(bytes);
                     long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
-                    User user= new User(id,name,rating,bitmap,score);
+                    User user= new User(id,name,rating, bitmap,score);
                     users.add(user);
                 }
             }

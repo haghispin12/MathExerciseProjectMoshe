@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class ShowUsers extends Fragment {
     private Button btnFruit;
     private Intent intent;
     Uri uri;
+    private RecyclerView rcShowUsers;
 
     ActivityResultLauncher<Intent> startCamera = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -72,7 +74,7 @@ public class ShowUsers extends Fragment {
         Observers();
         vMain.dbSelectAll(getActivity());
         return view;
-     }
+    }
 
 
     private void updateViews() {
@@ -126,7 +128,7 @@ public class ShowUsers extends Fragment {
         vMain.vArrUser.observe(requireActivity(), new Observer<ArrayList<User>>() {
             @Override
             public void onChanged(ArrayList<User> users) {
-               int n =10;
+
             }
         });
 

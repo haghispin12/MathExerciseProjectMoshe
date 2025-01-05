@@ -11,37 +11,39 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public interface OnItemClickListener{
-        void onItemClick(Fruit item);
+        void onItemClick(User item);
     }
 
-    public ArrayList<Fruit> fruits;
-    private OnItemClickListener listener;
 
-    public FruitAdapter(ArrayList<Fruit> fruits, OnItemClickListener listener){
-        this.fruits = fruits;
+    public ArrayList<User> users;
+    private UserAdapter.OnItemClickListener listener;
+
+    public UserAdapter(ArrayList<User> users, UserAdapter.OnItemClickListener listener){
+        this.users = users;
         this.listener = listener;
     }
 
     //
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
-        return new ViewHolder(view);
+        return new UserAdapter.ViewHolder(view);
     }
+
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(fruits.get(position), listener);
+    public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
+        holder.bind(users.get(position), listener);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return fruits.size();
+        return users.size();
     }
     /**
      * Provide a reference to the type of views that you are using
@@ -50,24 +52,26 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFruitName;
-        ImageView ivFruitImg;
+        TextView tvUserName;
+        ImageView ivUserPFP;
+        TextView tvUserScore;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFruitName = itemView.findViewById(R.id.tvFruitName);
-            ivFruitImg = itemView.findViewById(R.id.ivFruitImg);
+            tvUserScore = itemView.findViewById(R.id.tvUserScore);
+            tvUserName = itemView.findViewById(R.id.tvUserName);
+            ivUserPFP = itemView.findViewById(R.id.ivUserPFP);
+
         }
 
-        public void bind(Fruit fruit, OnItemClickListener listener) {
-            tvFruitName.setText(fruit.getName());
-            ivFruitImg.setImageResource(fruit.getImage());
+        public void bind(User user, UserAdapter.OnItemClickListener listener) {
+            tvUserName.setText(user.getUserName());
+            ivUserPFP.setImageResource(user.getImage());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        listener.onItemClick(fruit);
+                    listener.onItemClick(user);
                 }
             });
         }
-    }
-}
+    }}
