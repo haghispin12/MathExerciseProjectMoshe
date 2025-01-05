@@ -72,7 +72,7 @@ public class ShowUsers extends Fragment {
         Observers();
         vMain.dbSelectAll(getActivity());
         return view;
-    }
+     }
 
 
     private void updateViews() {
