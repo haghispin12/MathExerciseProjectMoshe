@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
@@ -92,7 +93,7 @@ public class ShowUsers extends Fragment {
         ivPFP = v.findViewById(R.id.ivPFP);
         btnAddUser = v.findViewById(R.id.btnAddUser);
         btnFruit = v.findViewById(R.id.btnFruit);
-
+        rcShowUsers = v.findViewById(R.id.rcShowUsers);
     }
     public void onClickListeners(){
         /*
@@ -128,8 +129,19 @@ public class ShowUsers extends Fragment {
         vMain.vArrUser.observe(requireActivity(), new Observer<ArrayList<User>>() {
             @Override
             public void onChanged(ArrayList<User> users) {
+                UserAdapter userAdapter = new UserAdapter(users, new UserAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(User item) {
+
+                    }
+                });
+
+                rcShowUsers.setLayoutManager(new LinearLayoutManager(requireActivity()));
+                rcShowUsers.setAdapter(userAdapter);
+                rcShowUsers.setHasFixedSize(true);
 
             }
+
         });
 
     }

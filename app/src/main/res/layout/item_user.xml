@@ -23,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     <TextView
+        android:textColorHint="@color/white"
+        android:hint="USERNAME"
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +34,8 @@
         android:gravity="center"
         />
     <TextView
+        android:textColorHint="@color/white"
+        android:hint="USERSCORE"
         android:id="@+id/tvUserScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

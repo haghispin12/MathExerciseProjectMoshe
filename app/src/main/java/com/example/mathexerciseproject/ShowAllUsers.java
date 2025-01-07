@@ -17,7 +17,7 @@ public class ShowAllUsers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_users);
-        rcShowFruits = findViewById(R.id.rcShowUsers);
+        rcShowFruits = findViewById(R.id.rcShowFruit);
 
 
         ArrayList<Fruit> fruits = new ArrayList<>();

@@ -6,12 +6,21 @@ public class Exercise {
     private int num1;
     private int num2;
     private int num3;
+    private boolean hasChecked;
+    private boolean hasChecked2;
     private Integer bet = new Integer(0);
 
 
     /*
     getters
      */
+
+    public boolean isHasChecked2() {
+        return hasChecked2;
+    }
+
+    public boolean isHasChecked() {return hasChecked;}
+
     public int getNum1() {
         return num1;
     }
@@ -21,9 +30,15 @@ public class Exercise {
     }
 
     public int getBet() {return bet;}
+
+    public int getnum3() {return num3;}
     /*
     setters
      */
+
+    public void setHasChecked(boolean hasChecked) {
+        this.hasChecked = hasChecked;
+    }
 
     public void setNum1(int num1) {
         this.num1 = num1;
@@ -66,5 +81,7 @@ public class Exercise {
             return false;
         }
     }
+
+
 
 }

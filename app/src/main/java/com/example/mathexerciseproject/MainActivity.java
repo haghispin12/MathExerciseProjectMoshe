@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel vMain;
     private Button btnRate;
     private FragmentTransaction trans;
-    int num1 =0;
 
 
 
@@ -126,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         BtnTimes10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(num1<=0)){num1--;}
                 vMain.vTimes10();
                 vMain.vExercise.setBet(10);
 
@@ -138,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         BtnTimes20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(num1<=0)){num1--;}
                 vMain.vTimes20();
                 vMain.vExercise.setBet(20);
 
@@ -150,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         BtnChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(num1<=0)){num1--;}
                 vMain.vChallenge();
                 vMain.vExercise.setBet(50);
             }
@@ -161,18 +157,16 @@ public class MainActivity extends AppCompatActivity {
         BtnCheckAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int num = vMain.vExercise.getNum1()*vMain.vExercise.getNum2();
                 String mAnswer = tvAnswer.getText().toString();
-                if(vMain.vCheck(mAnswer)&& num1==0){
+                if(vMain.vCheck(mAnswer) && !vMain.hasChecked()){
                     createToast(Toast.LENGTH_SHORT, "Correct Answer");
                     vMain.addScore();
-                    if(!(num1>0)){num1++;}
-                }else if(num1==0){
+                }else if(!vMain.hasChecked()){
                     createToast(Toast.LENGTH_SHORT, "Wrong Answer");
-                    createToast(Toast.LENGTH_SHORT, "The answer is "+num);
+                    createToast(Toast.LENGTH_SHORT, "The answer is "+ " "+ vMain.getExerciseNum3());
                     vMain.lowerScore();
-                    if(!(num1>0)){num1++;}
                 }
+                vMain.vPostCheck();
             }
         });
         /*
