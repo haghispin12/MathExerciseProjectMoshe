@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
@@ -21,6 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -44,8 +48,11 @@ public class ShowUsers extends Fragment {
     private MainViewModel vMain;
     private Button btnFruit;
     private Intent intent;
-    Uri uri;
+    private Uri uri;
     private RecyclerView rcShowUsers;
+    private MenuItem itemEdit;
+    private MenuItem itemDelete;
+
 
     ActivityResultLauncher<Intent> startCamera = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -75,6 +82,30 @@ public class ShowUsers extends Fragment {
         Observers();
         vMain.dbSelectAll(getActivity());
         return view;
+    }
+
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater
+            menuInflater) {
+        menuInflater.inflate(R.menu.main_menu, menu);// חיבור המניו לאקס.מ.ל
+        itemDelete = menu.findItem(R.id.action_delete); // יצירת אובייקט של
+        itemDelete.setVisible(false); // להסתיר אותו אם רוצים בטעינה הראשונה
+        itemEdit = menu.findItem(R.id.action_edit);
+        itemEdit.setVisible(false);
+        super.onCreateOptionsMenu(menu,menuInflater);
+
+    }
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        switch (id) {
+            case R.id.action_delete:
+                //TBD
+                return true;
+            case R.id.action_edit:
+                //TBD
+                return true;
+        }
+        return false;
+
     }
 
 
@@ -132,7 +163,7 @@ public class ShowUsers extends Fragment {
                 UserAdapter userAdapter = new UserAdapter(users, new UserAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(User item) {
-
+                        int n=10;
                     }
                 });
 

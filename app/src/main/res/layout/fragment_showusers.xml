@@ -33,7 +33,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:id="@+id/tvScore"
-            android:gravity="center"
+            android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Score:"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_marginRight="5dp"
             android:id="@+id/tvRating"
-            android:gravity="center"
+            android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Rating:"
