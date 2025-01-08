@@ -56,6 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         ImageView ivUserPFP;
         TextView tvUserScore;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUserScore = itemView.findViewById(R.id.tvUserScore);
@@ -66,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         public void bind(User user, UserAdapter.OnItemClickListener listener) {
             tvUserName.setText(user.getUserName());
-            tvUserScore.setText(user.getScore()+"");
+            tvUserScore.setText("Points: "+user.getScore()+"");
             ivUserPFP.setImageBitmap(user.getBitmap());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

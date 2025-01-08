@@ -33,7 +33,6 @@ public class ShowAllUsers extends AppCompatActivity {
                 Toast.makeText(ShowAllUsers.this, item.getName(), Toast.LENGTH_LONG).show();
             }
         });
-
         rcShowFruits.setLayoutManager(new LinearLayoutManager(this));
         rcShowFruits.setAdapter(fruitAdapter);
         rcShowFruits.setHasFixedSize(true);
