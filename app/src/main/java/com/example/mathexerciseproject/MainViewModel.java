@@ -108,4 +108,13 @@ Grab all current users from the database, and insert into Array (vArrUser)
         }
         return false;
     }
+    public void dbDeleteUser(Context context){
+
+    }
+    public void dbEditUsername(Context context, User user){
+        DBHelper dbHelper = new DBHelper(context);
+
+        dbHelper.update(user);
+        dbSelectAll(context);
+    }
 }

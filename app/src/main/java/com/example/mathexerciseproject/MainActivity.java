@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onActivityResult(ActivityResult result) {
                 int myRate = result.getData().getIntExtra("Rating", -1);
                 vMain.setUserRate(myRate);
-                createToast(Toast.LENGTH_LONG,"You rated "+myRate+"");
+                createToast("You rated "+myRate+"");
             }
     });
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         String userName=intent.getStringExtra("user");
         setTitle(userName);
         vMain.setUserName(userName);
-        createToast(Toast.LENGTH_SHORT,vMain.vUser.getUserName());
+        createToast(vMain.vUser.getUserName());
     }
     /*
     Construct all variables from list
@@ -163,11 +163,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String mAnswer = tvAnswer.getText().toString();
                 if(vMain.vCheck(mAnswer) && !vMain.hasChecked()){
-                    createToast(Toast.LENGTH_SHORT, "Correct Answer");
+                    createToast("Correct Answer");
                     vMain.addScore();
                 }else if(!vMain.hasChecked()){
-                    createToast(Toast.LENGTH_SHORT, "Wrong Answer");
-                    createToast(Toast.LENGTH_SHORT, "The answer is "+ " "+ vMain.getExerciseNum3());
+                    createToast("Wrong Answer");
+                    createToast("The answer is "+ " "+ vMain.getExerciseNum3());
                     vMain.lowerScore();
                 }
                 vMain.vPostCheck();
@@ -195,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
     /*
      * Create toast (popup message)
      */
-    public void createToast(int duration, String text){
-        Toast toast = Toast.makeText(this, text, duration);
+    public void createToast(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
     }
 

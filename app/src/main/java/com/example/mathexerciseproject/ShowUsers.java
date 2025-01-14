@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
@@ -38,7 +39,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 
-public class ShowUsers extends Fragment {
+public class ShowUsers extends Fragment implements MenuProvider {
     private EditText etUser;
     private TextView tvScore;
     private TextView tvRating;
@@ -52,6 +53,8 @@ public class ShowUsers extends Fragment {
     private RecyclerView rcShowUsers;
     private MenuItem itemEdit;
     private MenuItem itemDelete;
+    EditText ETEditUser;
+    private User currentUser;
 
 
     ActivityResultLauncher<Intent> startCamera = registerForActivityResult(
@@ -81,32 +84,33 @@ public class ShowUsers extends Fragment {
         onClickListeners();
         Observers();
         vMain.dbSelectAll(getActivity());
+        requireActivity().addMenuProvider(this);
         return view;
     }
 
-    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater
-            menuInflater) {
-        menuInflater.inflate(R.menu.main_menu, menu);// חיבור המניו לאקס.מ.ל
-        itemDelete = menu.findItem(R.id.action_delete); // יצירת אובייקט של
-        itemDelete.setVisible(false); // להסתיר אותו אם רוצים בטעינה הראשונה
-        itemEdit = menu.findItem(R.id.action_edit);
-        itemEdit.setVisible(false);
-        super.onCreateOptionsMenu(menu,menuInflater);
-
-    }
-    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        switch (id) {
-            case R.id.action_delete:
-                //TBD
-                return true;
-            case R.id.action_edit:
-                //TBD
-                return true;
-        }
-        return false;
-
-    }
+//    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater
+//            menuInflater) {
+//        menuInflater.inflate(R.menu.main_menu, menu);// חיבור המניו לאקס.מ.ל
+//        itemDelete = menu.findItem(R.id.action_delete); // יצירת אובייקט של
+//        itemDelete.setVisible(false); // להסתיר אותו אם רוצים בטעינה הראשונה
+//        itemEdit = menu.findItem(R.id.action_edit);
+//        itemEdit.setVisible(false);
+//        super.onCreateOptionsMenu(menu,menuInflater);
+//
+//    }
+//    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+//        int id = menuItem.getItemId();
+//        switch (id) {
+//            case R.id.action_delete:
+//                //TBD
+//                return true;
+//            case R.id.action_edit:
+//                //TBD
+//                return true;
+//        }
+//        return false;
+//
+//    }
 
 
     private void updateViews() {
@@ -117,7 +121,7 @@ public class ShowUsers extends Fragment {
 
 
     private void initViews(View v) {
-        etUser = v.findViewById(R.id.etUser);
+        etUser = v.findViewById(R.id.etUser1);
         tvScore = v.findViewById(R.id.tvScore);
         tvRating = v.findViewById(R.id.tvRating);
         btnAddPicture = v.findViewById(R.id.btnAddPicture);
@@ -125,6 +129,7 @@ public class ShowUsers extends Fragment {
         btnAddUser = v.findViewById(R.id.btnAddUser);
         btnFruit = v.findViewById(R.id.btnFruit);
         rcShowUsers = v.findViewById(R.id.rcShowUsers);
+        ETEditUser = v.findViewById(R.id.ETEditUser);
     }
     public void onClickListeners(){
         /*
@@ -155,6 +160,10 @@ public class ShowUsers extends Fragment {
                 startCamera.launch(cameraIntent);
             }
         });
+        /*
+        button Edit User Name
+         */
+
     }
     public void Observers(){
         vMain.vArrUser.observe(requireActivity(), new Observer<ArrayList<User>>() {
@@ -163,7 +172,11 @@ public class ShowUsers extends Fragment {
                 UserAdapter userAdapter = new UserAdapter(users, new UserAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(User item) {
-                        int n=10;
+                        itemDelete.setVisible(true);
+                        itemEdit.setVisible(true);
+                        ETEditUser.setText(item.getUserName()+"");
+                        currentUser = item;
+
                     }
                 });
 
@@ -175,5 +188,31 @@ public class ShowUsers extends Fragment {
 
         });
 
+    }
+
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.main_menu, menu);// חיבור המניו לאקס.מ.ל
+        itemDelete = menu.findItem(R.id.action_delete); // יצירת אובייקט של המחיקה
+        itemDelete.setVisible(false); // להסתיר אותו אם רוצים בטעינה הראשונה
+        itemEdit = menu.findItem(R.id.action_edit);
+        itemEdit.setVisible(false);
+        super.onCreateOptionsMenu(menu,menuInflater);
+    }
+
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        switch (id) {
+            case R.id.action_delete:
+                //DO SOMETHING
+                return true;
+            case R.id.action_edit:
+                currentUser.setUserName(ETEditUser.getText()+"");
+                vMain.dbEditUsername(getActivity(), currentUser);
+
+                return true;
+        }
+        return false;
     }
 }

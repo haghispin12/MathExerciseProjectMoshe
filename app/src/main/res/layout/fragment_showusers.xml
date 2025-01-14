@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:gravity="center_horizontal"
-            android:id="@+id/etUser"
+            android:id="@+id/etUser1"
             android:textSize="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -87,6 +87,15 @@
             android:text="Add User"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ETEditUser"
+            android:hint="Edit UserName"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            />
 
 
 

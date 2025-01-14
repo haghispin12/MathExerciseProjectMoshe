@@ -9,11 +9,15 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="sss"
+        android:iconTint="#EFEFEF"
+        android:icon="@drawable/ic_baseline_delete_24"
         />
     <item
         android:id="@+id/action_edit"
         android:orderInCategory="10"
         app:showAsAction="always"
         android:title="sss"
+        android:iconTint="#EFEFEF"
+        android:icon="@drawable/ic_baseline_edit_24"
         />
 </menu>
