@@ -20,6 +20,8 @@ public class User {
         this.bitmap = bitmap;
     }
 
+
+
     public User() {
     }
 

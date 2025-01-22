@@ -2,7 +2,9 @@ package com.example.mathexerciseproject;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -176,7 +178,6 @@ public class ShowUsers extends Fragment implements MenuProvider {
                         itemEdit.setVisible(true);
                         ETEditUser.setText(item.getUserName()+"");
                         currentUser = item;
-
                     }
                 });
 
@@ -205,12 +206,30 @@ public class ShowUsers extends Fragment implements MenuProvider {
         int id = menuItem.getItemId();
         switch (id) {
             case R.id.action_delete:
-                //DO SOMETHING
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                alertDialog.setTitle("Delete User");
+                alertDialog.setMessage("Are you sure you want to delete user, "+currentUser.getUserName()+"?");
+                alertDialog.setIcon(R.drawable.ic_baseline_warning_24);
+                alertDialog.setCancelable(true);
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        vMain.dbDeleteUser(getActivity(), currentUser.getId());
+                        dialogInterface.dismiss();
+                    }
+                });
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alertDialog.show();
+
                 return true;
             case R.id.action_edit:
                 currentUser.setUserName(ETEditUser.getText()+"");
                 vMain.dbEditUsername(getActivity(), currentUser);
-
                 return true;
         }
         return false;
