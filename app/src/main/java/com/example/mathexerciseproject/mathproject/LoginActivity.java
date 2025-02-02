@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject.Activites;
+package com.example.mathexerciseproject.mathproject;
 
 
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mathexerciseproject.MainActivity;
 import com.example.mathexerciseproject.R;
 
 public class LoginActivity extends AppCompatActivity {

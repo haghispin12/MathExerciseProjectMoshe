@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 import java.util.Random;
 

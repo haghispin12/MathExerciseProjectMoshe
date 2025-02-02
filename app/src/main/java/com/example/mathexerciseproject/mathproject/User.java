@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

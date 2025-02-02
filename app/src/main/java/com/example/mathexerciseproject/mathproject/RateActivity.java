@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+
+import com.example.mathexerciseproject.R;
 
 public class RateActivity extends AppCompatActivity {
     private Button btnSubmit;

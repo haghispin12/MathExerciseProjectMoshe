@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 public class Fruit {
 

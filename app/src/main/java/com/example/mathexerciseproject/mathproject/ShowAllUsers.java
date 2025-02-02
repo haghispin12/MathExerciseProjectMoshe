@@ -1,12 +1,13 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.mathexerciseproject.R;
 
 import java.util.ArrayList;
 

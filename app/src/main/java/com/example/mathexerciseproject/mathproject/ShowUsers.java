@@ -1,4 +1,4 @@
-package com.example.mathexerciseproject;
+package com.example.mathexerciseproject.mathproject;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -35,6 +35,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mathexerciseproject.R;
 
 import org.w3c.dom.Text;
 
