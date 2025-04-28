@@ -3,6 +3,7 @@ package com.example.mathexerciseproject.FishingProject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,9 +21,9 @@ public class FishingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fishing);
         InnitViews();
         onClickListeners();
-
+        Log.d("FishingActivity", "PositionX=" + gameView.getFish1().getXPosition() + " SpeedX=" + gameView.getFish1().getSpeed());
+        Log.d("IsRunning", "THE GAME IS RUNNING");
     }
-
     private void onClickListeners() {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +45,12 @@ public class FishingActivity extends AppCompatActivity {
         gameView = findViewById(R.id.game_view);
     }
 
-
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // It's still important to tell the GameView to stop when the Activity pauses
+        if (gameView != null) {
+            gameView.stopGameLoop();
+        }
+    }
 }

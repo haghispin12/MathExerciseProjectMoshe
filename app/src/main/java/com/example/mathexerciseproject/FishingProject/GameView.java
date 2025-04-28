@@ -1,5 +1,4 @@
 package com.example.mathexerciseproject.FishingProject;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,28 +6,35 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class GameView extends View {
 
-    private Fish fish;
+    private fish1 fish1;
     private Paint fishPaint;
-//    private Paint barPaint;
+    private Paint barPaint;
     private float barY;
     private float barLeft;
     private float barRight;
+    private float barLength = 200;
+    private float barPositionX;
 
     private Handler handler = new Handler();
     private GameUpdateRunnable gameLoop = new GameUpdateRunnable();
-    private boolean isLooping = true; // Start looping by default
+    private boolean isLooping = false;
+
+    public fish1 getFish1() {
+        return fish1;
+    }
 
     private class GameUpdateRunnable implements Runnable {
         @Override
         public void run() {
-            fish.updatePosition();
-            invalidate(); // Request a redraw of the view
+            fish1.updatePosition();
+            invalidate();
             if (isLooping) {
-                handler.postDelayed(this, 30); // Run again if the loop is active
+                handler.postDelayed(this, 30);
             }
         }
     }
@@ -52,17 +58,18 @@ public class GameView extends View {
         fishPaint = new Paint();
         fishPaint.setColor(Color.BLUE);
 
-//        barPaint = new Paint();
-//        barPaint.setColor(Color.GREEN);
+        barPaint = new Paint();
+        barPaint.setColor(Color.GREEN);
 
-        barLeft = 100;
-        barRight = 800;
-        barY = 500;
-        float fishStartX = (barLeft + barRight) / 2;
-        float fishSpeed = 15;
-        fish = new Fish(fishStartX, fishSpeed, barLeft, barRight);
+        barY = getHeight() / 2f;
+        barPositionX = (getWidth() - barLength) / 2f;
+        barLeft = barPositionX;
+        barRight = barPositionX + barLength;
 
-        // Start the game loop when the view is initialized
+        float fishStartX = getWidth() / 2f;
+        float fishSpeed = 10; // Adjusted to match baseSpeed in Fish
+        fish1 = new fish1(fishStartX, fishSpeed, 0, getWidth());
+
         startGameLoop();
     }
 
@@ -76,18 +83,40 @@ public class GameView extends View {
             Log.d("GameView", "Game loop already running");
         }
     }
+
     public void stopGameLoop() {
         isLooping = false;
         handler.removeCallbacks(gameLoop);
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        barY = h / 2f;
+        barPositionX = (w - barLength) / 2f;
+        barLeft = barPositionX;
+        barRight = barPositionX + barLength;
+        fish1.leftBound = 0;
+        fish1.rightBound = w;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // We'll implement touch handling here later
+        return true;
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (canvas != null) {
+            canvas.drawColor(Color.CYAN);
 
-//        canvas.drawRect(barLeft, barY - 50, barRight, barY + 50, barPaint);
-        float fishX = fish.getXPosition();
-        canvas.drawCircle(fishX, barY, 30, fishPaint);
+            float fishX = fish1.getXPosition();
+            canvas.drawCircle(fishX, barY, 30, fishPaint);
+
+            canvas.drawRect(barPositionX, barY - 50, barPositionX + barLength, barY + 50, barPaint);
+        }
     }
 
     @Override

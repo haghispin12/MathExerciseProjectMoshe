@@ -20,6 +20,10 @@ public class Fish {
         return xPosition;
     }
 
+    public float getSpeed() {
+        return speed;
+    }
+
     public void updatePosition() {
         if (movingRight) {
             xPosition += speed;
