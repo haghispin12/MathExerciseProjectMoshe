@@ -131,7 +131,6 @@ public class ShowUsers extends Fragment implements MenuProvider {
         btnAddPicture = v.findViewById(R.id.btnAddPicture);
         ivPFP = v.findViewById(R.id.ivPFP);
         btnAddUser = v.findViewById(R.id.btnAddUser);
-        btnFruit = v.findViewById(R.id.btnFruit);
         rcShowUsers = v.findViewById(R.id.rcShowUsers);
         ETEditUser = v.findViewById(R.id.ETEditUser);
     }

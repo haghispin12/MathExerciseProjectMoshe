@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MathExerciseProject"
         tools:targetApi="31">
         <activity
-            android:name=".FishingActivity"
+            android:name=".FishingProject.FishingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

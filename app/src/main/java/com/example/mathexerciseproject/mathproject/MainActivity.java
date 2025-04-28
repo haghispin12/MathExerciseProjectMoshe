@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mathexerciseproject.FishingProject.FishingActivity;
 import com.example.mathexerciseproject.R;
 
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Variable list
      */
 
-    private Button btnFruit;
+    private Button btnFishing;
     private Button btnUser;
     private Button BtnTimes10;
     private Button BtnTimes20;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     Construct all variables from list
      */
     public void initViews(){
-        btnFruit = findViewById(R.id.btnFruit);
+        btnFishing = findViewById(R.id.btnFishing);
         btnUser = findViewById(R.id.btnUser);
         BtnTimes10 = findViewById(R.id.BtnTimes10);
         BtnTimes20 = findViewById(R.id.btnTimes20);
@@ -178,10 +179,10 @@ public class MainActivity extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-        btnFruit.setOnClickListener(new View.OnClickListener() {
+        btnFishing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShowAllUsers.class);
+                Intent intent = new Intent(MainActivity.this, FishingActivity.class);
                 startActivity(intent);
             }
         });
