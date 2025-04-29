@@ -16,13 +16,6 @@ public class Fish {
         this.rightBound = right;
     }
 
-    public float getXPosition() {
-        return xPosition;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
 
     public void updatePosition() {
         if (movingRight) {
@@ -41,4 +34,17 @@ public class Fish {
     }
 
     // You'll need a way to draw this fish at its xPosition in your game view
+
+    /*
+    Getters
+     */
+
+    public float getXPosition() {
+        return xPosition;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
 }

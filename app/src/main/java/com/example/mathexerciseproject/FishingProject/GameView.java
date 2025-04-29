@@ -10,16 +10,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class GameView extends View {
+    private Bar bar;
 
     private fish1 fish1;
-    private Paint fishPaint;
-    private Paint barPaint;
-    private float barY;
-    private float barLeft;
-    private float barRight;
-    private float barLength = 200;
-    private float barPositionX;
-
+    private float gameHeight; // Keep track of the fish's vertical position
     private Handler handler = new Handler();
     private GameUpdateRunnable gameLoop = new GameUpdateRunnable();
     private boolean isLooping = false;
@@ -32,6 +26,7 @@ public class GameView extends View {
         @Override
         public void run() {
             fish1.updatePosition();
+            bar.updatePosition();
             invalidate();
             if (isLooping) {
                 handler.postDelayed(this, 30);
@@ -55,20 +50,19 @@ public class GameView extends View {
     }
 
     private void init() {
-        fishPaint = new Paint();
-        fishPaint.setColor(Color.BLUE);
+        boolean Gravity = true;
+        float fishStartX = 5;
+        float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
+        fish1 = new fish1(fishStartX, fishSpeed, 130f, getWidth()-100f); //the number 130 is keeping in mind the radius of the circle 30f
+        bar = new Bar(400f, 10f, Gravity, getWidth()-200f, 5);
 
-        barPaint = new Paint();
-        barPaint.setColor(Color.GREEN);
+        fish1.getPaint().setColor(Color.BLUE);
+        bar.getPaint().setColor(Color.GREEN);
 
-        barY = getHeight() / 2f;
-        barPositionX = (getWidth() - barLength) / 2f;
-        barLeft = barPositionX;
-        barRight = barPositionX + barLength;
+        gameHeight = getHeight() / 2f; // Initialize fish Y position to the center
 
-        float fishStartX = getWidth() / 2f;
-        float fishSpeed = 10; // Adjusted to match baseSpeed in Fish
-        fish1 = new fish1(fishStartX, fishSpeed, 0, getWidth());
+
+
 
         startGameLoop();
     }
@@ -92,12 +86,9 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        barY = h / 2f;
-        barPositionX = (w - barLength) / 2f;
-        barLeft = barPositionX;
-        barRight = barPositionX + barLength;
-        fish1.leftBound = 0;
-        fish1.rightBound = w;
+        gameHeight = h / 2f; // Ensure fish Y position is based on the actual view height
+        fish1.leftBound = 130;
+        fish1.rightBound = w -130;
     }
 
     @Override
@@ -113,9 +104,12 @@ public class GameView extends View {
             canvas.drawColor(Color.CYAN);
 
             float fishX = fish1.getXPosition();
-            canvas.drawCircle(fishX, barY, 30, fishPaint);
 
-            canvas.drawRect(barPositionX, barY - 50, barPositionX + barLength, barY + 50, barPaint);
+            canvas.drawRect(bar.getBarX(), gameHeight - 50, bar.getBarX() + bar.getBarLength(), gameHeight + 50, bar.getPaint());
+            canvas.drawCircle(fishX, gameHeight, fish1.getRadius(), fish1.getPaint());
+
+//            canvas.drawCircle(400, gameHeight+100, fishRadius, fishPaint);
+
         }
     }
 

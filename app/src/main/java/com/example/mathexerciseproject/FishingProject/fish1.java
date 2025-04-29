@@ -1,9 +1,14 @@
 package com.example.mathexerciseproject.FishingProject;
 
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import java.util.Random;
 
 public class fish1 {
 
+    private Paint paint = new Paint(Color.GREEN);
+    private float radius;
     private float xPosition;
     private float baseSpeed = 25f;
     private float dashSpeedMultiplier = 2.5f;
@@ -22,9 +27,10 @@ public class fish1 {
     private int moveInterval = 30; // Average interval for state change attempts
 
     public fish1(float startX, float moveSpeed, float left, float right) {
+        this.radius = 30;
         this.xPosition = startX;
         this.baseSpeed = moveSpeed;
-        this.leftBound = left;
+        this.leftBound = 300;
         this.rightBound = right;
         this.currentState = random.nextBoolean() ? State.MOVING_RIGHT : State.MOVING_LEFT;
         // Initialize durations with a random value
@@ -32,23 +38,7 @@ public class fish1 {
         this.pauseDuration = random.nextInt(maxPauseDuration - minPauseDuration + 1) + minPauseDuration;
     }
 
-    public float getXPosition() {
-        return xPosition;
-    }
 
-    public float getSpeed() {
-        switch (currentState) {
-            case DASHING_LEFT:
-            case DASHING_RIGHT:
-                return baseSpeed * dashSpeedMultiplier;
-            case MOVING_LEFT:
-            case MOVING_RIGHT:
-                return baseSpeed;
-            case PAUSING:
-            default:
-                return 0;
-        }
-    }
 
     public void updatePosition() {
         stateTimer++;
@@ -110,5 +100,34 @@ public class fish1 {
             currentState = random.nextBoolean() ? State.MOVING_RIGHT : State.MOVING_LEFT;
             stateTimer = 0;
         }
+    }
+
+    /*
+    getters
+     */
+    public float getXPosition() {
+        return xPosition;
+    }
+
+    public float getSpeed() {
+        switch (currentState) {
+            case DASHING_LEFT:
+            case DASHING_RIGHT:
+                return baseSpeed * dashSpeedMultiplier;
+            case MOVING_LEFT:
+            case MOVING_RIGHT:
+                return baseSpeed;
+            case PAUSING:
+            default:
+                return 0;
+        }
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public Paint getPaint() {
+        return paint;
     }
 }
