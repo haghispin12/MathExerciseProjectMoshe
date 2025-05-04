@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,6 +15,7 @@ public class FishingActivity extends AppCompatActivity {
     private GameView gameView;
     private Button btnStart;
     private Button btnStop;
+    private Button btnFish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,28 @@ public class FishingActivity extends AppCompatActivity {
                 gameView.stopGameLoop();
             }
         });
+        btnFish.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        gameView.setIsFish(true);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        gameView.setIsFish(false);
+                }
+                    return false;
+
+            }
+        });
     }
 
     private void InnitViews() {
         btnStop = findViewById(R.id.btnStop);
         btnStart = findViewById(R.id.btnStart);
+        btnFish = findViewById(R.id.btnFish);
         gameView = findViewById(R.id.game_view);
+
     }
 
     @Override

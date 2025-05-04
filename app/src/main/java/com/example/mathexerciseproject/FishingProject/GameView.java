@@ -22,6 +22,10 @@ public class GameView extends View {
         return fish1;
     }
 
+    public void setIsFish(boolean isFish){
+        bar.setPressing(isFish);
+    }
+
     private class GameUpdateRunnable implements Runnable {
         @Override
         public void run() {
@@ -53,7 +57,7 @@ public class GameView extends View {
         boolean Gravity = true;
         float fishStartX = 5;
         float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
-        fish1 = new fish1(fishStartX, fishSpeed, 130f, getWidth()-100f); //the number 130 is keeping in mind the radius of the circle 30f
+        fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
         bar = new Bar(400f, 10f, Gravity, getWidth()-200f, 5);
 
         fish1.getPaint().setColor(Color.BLUE);
@@ -107,6 +111,7 @@ public class GameView extends View {
 
             canvas.drawRect(bar.getBarX(), gameHeight - 50, bar.getBarX() + bar.getBarLength(), gameHeight + 50, bar.getPaint());
             canvas.drawCircle(fishX, gameHeight, fish1.getRadius(), fish1.getPaint());
+            canvas.drawRect(100, gameHeight+50, 1000f, gameHeight, fish1.getPaint());
 
 //            canvas.drawCircle(400, gameHeight+100, fishRadius, fishPaint);
 
