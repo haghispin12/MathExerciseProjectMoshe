@@ -58,15 +58,11 @@ public class GameView extends View {
         float fishStartX = 5;
         float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
         fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
-        bar = new Bar(400f, 10f, Gravity, getWidth()-200f, 5);
-
+        bar = new Bar(400f, fishSpeed+5, Gravity, 800f, 5);
         fish1.getPaint().setColor(Color.BLUE);
         bar.getPaint().setColor(Color.GREEN);
 
         gameHeight = getHeight() / 2f; // Initialize fish Y position to the center
-
-
-
 
         startGameLoop();
     }

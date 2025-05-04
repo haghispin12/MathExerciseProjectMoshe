@@ -3,6 +3,7 @@ package com.example.mathexerciseproject.FishingProject;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Bar {
     private Paint paint = new Paint(Color.GREEN); //Color of the bar
@@ -24,19 +25,19 @@ public class Bar {
     }
 
     public void updatePosition() {
+        Log.d("bar status3", "right bound = "+ barRBound);
         if(!isPressing) {
             barX -= barSpeed;
             if (barX - (barLength / 2) < barLBound) {
                 barX = barLBound + (barLength / 2);
                 GravityL = false;
+                Log.d("bar status2", "right bound = "+ barRBound);
             }
         }
-        if(isPressing){
+        if(isPressing && barX < barRBound){
             GravityL = false;
             barX += barSpeed;
-            if(barX - (barLength/2) > barRBound){
-                barX = barRBound;
-            }
+            Log.d("bar status1", "right bound = "+ barRBound + " BarX = "+barX);
         }
 
     }
