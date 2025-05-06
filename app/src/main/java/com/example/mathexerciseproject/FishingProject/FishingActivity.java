@@ -3,10 +3,10 @@ package com.example.mathexerciseproject.FishingProject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.mathexerciseproject.R;
 
@@ -16,15 +16,14 @@ public class FishingActivity extends AppCompatActivity {
     private Button btnStart;
     private Button btnStop;
     private Button btnFish;
-
+    private TextView tvFishScore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fishing);
         InnitViews();
+
         onClickListeners();
-        Log.d("FishingActivity", "PositionX=" + gameView.getFish1().getXPosition() + " SpeedX=" + gameView.getFish1().getSpeed());
-        Log.d("IsRunning", "THE GAME IS RUNNING");
     }
     private void onClickListeners() {
         btnStart.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +59,7 @@ public class FishingActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
         btnFish = findViewById(R.id.btnFish);
         gameView = findViewById(R.id.game_view);
-
+        tvFishScore = findViewById(R.id.tvFishScore);
     }
 
     @Override

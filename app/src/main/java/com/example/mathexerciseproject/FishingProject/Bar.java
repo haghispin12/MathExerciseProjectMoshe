@@ -25,24 +25,27 @@ public class Bar {
     }
 
     public void updatePosition() {
-        Log.d("bar status3", "right bound = "+ barRBound);
         if(!isPressing) {
             barX -= barSpeed;
             if (barX - (barLength / 2) < barLBound) {
                 barX = barLBound + (barLength / 2);
                 GravityL = false;
-                Log.d("bar status2", "right bound = "+ barRBound);
             }
         }
-        if(isPressing && barX < barRBound){
+        if(isPressing && barX <= barRBound){
             GravityL = false;
             barX += barSpeed;
+            if(barX > barRBound){
+                barX=barRBound;
+            }
             Log.d("bar status1", "right bound = "+ barRBound + " BarX = "+barX);
         }
 
     }
 
-
+    public float getBarRBound() {
+        return barRBound;
+    }
 
     public float getBarX() {
         return barX;

@@ -35,6 +35,15 @@
         android:id="@+id/btnFish"
         android:background="#00FE00"
         />
+    <EditText
+        android:background="#2B4FD1"
+        android:id="@+id/tvFishScore"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="0"
+        android:gravity="center"
+        android:textColor="@color/white"
+        />
     </LinearLayout>
 
 
