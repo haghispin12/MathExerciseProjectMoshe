@@ -38,7 +38,7 @@ public class Bar {
             if(barX > barRBound){
                 barX=barRBound;
             }
-            Log.d("bar status1", "right bound = "+ barRBound + " BarX = "+barX);
+//            Log.d("bar status1", "right bound = "+ barRBound + " BarX = "+barX);
         }
 
     }

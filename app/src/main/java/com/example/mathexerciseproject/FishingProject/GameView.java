@@ -1,5 +1,8 @@
 package com.example.mathexerciseproject.FishingProject;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +12,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.mathexerciseproject.R;
 
 import org.w3c.dom.Text;
 
@@ -62,7 +67,7 @@ public class GameView extends View {
         fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
         bar = new Bar(100, fishSpeed+5, Gravity, 800f, 0);
         pBar = new ProgressBar(130, 400, false, 3, gameHeight, bar.getBarRBound());
-        fish1.getPaint().setColor(Color.BLUE);
+        fish1.getPaint().setColor(Color.rgb(0,102,204));
         bar.getPaint().setColor(Color.GREEN);
         pBar.getPaint().setColor(Color.RED);
         scoreTime = pBar.getScoreTime();
@@ -96,7 +101,10 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (canvas != null) {
-            canvas.drawColor(Color.CYAN);
+//            Resources res = getResources();
+//            Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.fishing_activity_background2);
+//            canvas.drawBitmap(bitmap, 0, 0, fish1.getPaint());
+            canvas.drawColor(Color.rgb(0,51,102));
 
             float fishX = fish1.getXPosition();
             canvas.drawRect(pBar.getRectLeft(),pBar.getRectTop(),pBar.getRectRight(),pBar.getRectBottom(),pBar.getPaint());

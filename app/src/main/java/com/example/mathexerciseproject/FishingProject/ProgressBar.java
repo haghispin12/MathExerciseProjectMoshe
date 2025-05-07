@@ -18,7 +18,7 @@ public class ProgressBar {
 
 
     public ProgressBar(int leftX, int rightX, boolean isOverLap, int speed, float gameHeight, float rightBound){
-        rect = new Rect(leftX, (int)gameHeight-250, rightX, (int)gameHeight-200);
+        rect = new Rect(leftX, (int)gameHeight-180, rightX, (int)gameHeight-130);
         this.upSpeed = speed;
         this.downSpeed = speed+(speed/2);
         this.isOverLap = isOverLap;
@@ -37,6 +37,9 @@ public class ProgressBar {
             }
         }else if(!isOverLap && rightX>leftX){
             rightX-=downSpeed;
+            if(rightX<=leftX){
+                rightX = leftX+1;
+            }
         }
     }
 

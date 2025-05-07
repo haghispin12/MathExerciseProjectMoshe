@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class fish1 {
 
-    private Paint paint = new Paint(Color.GREEN);
+    private Paint paint = new Paint(Color.rgb(51,153,255));
     private float radius;
     private float xPosition;
     private float baseSpeed = 25f;
