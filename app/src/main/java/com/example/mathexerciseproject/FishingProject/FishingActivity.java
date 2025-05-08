@@ -2,6 +2,7 @@ package com.example.mathexerciseproject.FishingProject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -52,6 +53,7 @@ public class FishingActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void InnitViews() {
@@ -70,4 +72,19 @@ public class FishingActivity extends AppCompatActivity {
             gameView.stopGameLoop();
         }
     }
+
+    protected void onStop() {
+        super.onStop();
+
+    }
+
+    public void onGameConclusion(){
+        Intent intent = new Intent(this, FishCaughtActivity.class);
+        intent.putExtra("isFishCaught", gameView.getIsCaught());
+        startActivity(intent);
+        finish();
+    }
+//    public boolean onTouchEvent(MotionEvent motionEvent){
+//
+//    }
 }

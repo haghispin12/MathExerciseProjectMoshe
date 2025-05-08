@@ -1,8 +1,12 @@
 package com.example.mathexerciseproject.FishingProject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import com.example.mathexerciseproject.mathproject.LoginActivity;
+import com.example.mathexerciseproject.mathproject.MainActivity;
 
 public class ProgressBar {
     private int leftX;
@@ -14,6 +18,8 @@ public class ProgressBar {
     private Rect rect;
     private float rightBound;
     private int scoreTime = 0;
+    private boolean isFinish = false;
+    private boolean isCaught = false;
 
 
 
@@ -33,12 +39,14 @@ public class ProgressBar {
         if(isOverLap && rightX>leftX){
             rightX+=upSpeed;
             if(rightX>rightBound){
-
+                isFinish = true;
+                isCaught = true;
             }
         }else if(!isOverLap && rightX>leftX){
             rightX-=downSpeed;
             if(rightX<=leftX){
-                rightX = leftX+1;
+                isFinish = true;
+                isCaught = false;
             }
         }
     }
@@ -63,7 +71,12 @@ public class ProgressBar {
     public int getRectRight(){
         return rightX;
     }
-
+    public boolean getIsFinish() {
+        return isFinish;
+    }
+    public boolean isCaught() {
+        return isCaught;
+    }
     public Paint getPaint() {
         return paint;
     }
@@ -74,4 +87,5 @@ public class ProgressBar {
     public void setOverLap(boolean overLap) {
         isOverLap = overLap;
     }
+
 }

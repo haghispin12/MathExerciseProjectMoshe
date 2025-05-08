@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FishingProject.FishCaughtActivity">
+    tools:context=".FishingProject.FishCaughtActivity"
+    android:background="#517588"
+    android:gravity="center_horizontal"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvFishCaught"
+            android:background="#2B4270"
+            android:textColor="#F0F0F0"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="You caught a fish!"
+            android:gravity="center"
+            />
+        <Button
+            android:layout_marginTop="5dp"
+            android:id="@+id/btnShop"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="#2B4270"
+            android:text="Go To Shop"
+            android:textColor="#F1F1F1"
+            />
+        <Button
+            android:layout_marginTop="5dp"
+            android:id="@+id/btnFishAgain"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="#2B4270"
+            android:text="Fish Some More"
+            android:textColor="#F1F1F1"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -26,6 +26,7 @@ public class GameView extends View {
     private GameUpdateRunnable gameLoop = new GameUpdateRunnable();
     private boolean isLooping = false;
     private int scoreTime;
+    private FishingActivity parentActivity;
 
     private class GameUpdateRunnable implements Runnable {
         @Override
@@ -42,21 +43,33 @@ public class GameView extends View {
             }else{
                 pBar.setOverLap(false);
             }
+            if(pBar.getIsFinish()){
+                triggerGameConclusion();
+            }
+        }
+    }
+    public void triggerGameConclusion(){
+        if(pBar.getIsFinish()){
+            stopGameLoop();
+            parentActivity.onGameConclusion();
         }
     }
 
     public GameView(Context context) {
         super(context);
+        this.parentActivity = (FishingActivity) context;
         init();
     }
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.parentActivity = (FishingActivity) context;
         init();
     }
 
     public GameView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.parentActivity = (FishingActivity) context;
         init();
     }
 
@@ -66,7 +79,7 @@ public class GameView extends View {
         float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
         fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
         bar = new Bar(100, fishSpeed+5, Gravity, 800f, 0);
-        pBar = new ProgressBar(130, 400, false, 3, gameHeight, bar.getBarRBound());
+        pBar = new ProgressBar(130, 700, false, 3, gameHeight, bar.getBarRBound());
         fish1.getPaint().setColor(Color.rgb(0,102,204));
         bar.getPaint().setColor(Color.GREEN);
         pBar.getPaint().setColor(Color.RED);
@@ -127,6 +140,9 @@ public class GameView extends View {
 
     public int getScoreTime() {
         return scoreTime;
+    }
+    public boolean getIsCaught(){
+        return pBar.isCaught();
     }
     /*
     setters
