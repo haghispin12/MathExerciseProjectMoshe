@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FishingProject.MainMenuActivity">
+    tools:context=".FishingProject.MainMenuActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#4D5A6E"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:text="FISH"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnPlay"
+            android:background="#00E40E"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAY"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#394659"
+            >
+            <TextView
+                android:layout_weight="20"
+                android:id="@+id/tvSave1"
+                android:text="UserName"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvBalance1"
+                android:layout_weight="5"
+                android:text="Balance"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnDelete1"
+                android:background="#8C1010"
+                android:textColor="@color/white"
+                android:text="Delete"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#394659"
+                >
+                <TextView
+                    android:layout_weight="20"
+                    android:id="@+id/tvSave2"
+                    android:text="UserName"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvBalance2"
+                    android:layout_weight="5"
+                    android:text="Balance"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnDelete2"
+                    android:background="#8C1010"
+                    android:textColor="@color/white"
+                    android:text="Delete"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#394659"
+                    >
+                    <TextView
+                        android:layout_weight="20"
+                        android:id="@+id/tvSave3"
+                        android:text="UserName"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBalance3"
+                        android:layout_weight="5"
+                        android:text="Balance"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/btnDelete3"
+                        android:background="#8C1010"
+                        android:textColor="@color/white"
+                        android:text="Delete"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+        <Button
+            android:id="@+id/btnSettings"
+            android:textColor="@color/white"
+            android:text="Settings"
+            android:background="#212933"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

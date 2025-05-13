@@ -1,5 +1,7 @@
 package com.example.mathexerciseproject.FishingProject;
 
+import static com.example.mathexerciseproject.FishingProject.Consts.ISCAUGHT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -80,7 +82,8 @@ public class FishingActivity extends AppCompatActivity {
 
     public void onGameConclusion(){
         Intent intent = new Intent(this, FishCaughtActivity.class);
-        intent.putExtra("isFishCaught", gameView.getIsCaught());
+        boolean n = gameView.getIsCaught();
+        intent.putExtra(ISCAUGHT, gameView.getIsCaught());
         startActivity(intent);
         finish();
     }
