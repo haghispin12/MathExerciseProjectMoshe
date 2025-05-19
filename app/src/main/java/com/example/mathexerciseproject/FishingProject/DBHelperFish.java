@@ -1,22 +1,27 @@
 package com.example.mathexerciseproject.FishingProject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.mathexerciseproject.mathproject.User;
+
+import java.io.IOException;
+
 public class DBHelperFish extends SQLiteOpenHelper {
 
-    private static final String TABLE_RECORD = "tblusers";
-    private static final String DATABASENAME = "user.db";
+    private static final String TABLE_RECORD = "tblfishusers";
+    private static final String DATABASENAME = "fishuser.db";
     private static final int DATABASEVERSION = 1;
 
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_BALANCE = "Balance";
+    private static final String COLUMN_BALANCE = "balance";
     private static final String COLUMN_NAME = "name";
 
-    private static final String[] allColums = {COLUMN_ID, COLUMN_BALANCE, COLUMN_NAME};
+    private static final String[] allColumns = {COLUMN_ID, COLUMN_BALANCE, COLUMN_NAME};
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS " +
             TABLE_RECORD + "(" +
@@ -38,5 +43,26 @@ public class DBHelperFish extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+    // get the user back with the id
+    // also possible to return only the id
+    public long insert(User user, Context context) {
+        database = getWritableDatabase(); // get access to write the database
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, user.getUserName());
+        values.put(COLUMN_BALANCE, user.getRate());
+        values.put(COLUMN_NAME, user.getScore());
+
+        // stored as Binary Large OBject ->  BLOB
+//        try {
+//            values.put(COLUMN_PICTURE, getBytes(context, user.getUri()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        long id = database.insert(TABLE_RECORD, null, values);
+        user.setId(id);
+        database.close();
+        return id;
     }
 }
