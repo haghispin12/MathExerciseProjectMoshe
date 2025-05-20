@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -39,6 +40,8 @@ public class MainMenuActivity extends AppCompatActivity {
     private User user1;
     private User user2;
     private User user3;
+//    DBHelperFish dbHelperFish = new DBHelperFish(this);
+//    Cursor cursor = dbHelperFish.getUserById(1);
 
 
     @Override
