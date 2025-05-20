@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.mathexerciseproject.mathproject.User;
-
 import java.io.IOException;
 
 public class DBHelperFish extends SQLiteOpenHelper {
@@ -20,6 +18,8 @@ public class DBHelperFish extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_BALANCE = "balance";
     private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_BUCKETSIZE = "bucketsize";
+    private static final String COLUMN_FISHAMOUNT = "fishamount";
 
     private static final String[] allColumns = {COLUMN_ID, COLUMN_BALANCE, COLUMN_NAME};
 
@@ -27,7 +27,9 @@ public class DBHelperFish extends SQLiteOpenHelper {
             TABLE_RECORD + "(" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_NAME + " TEXT UNIQUE," +
-            COLUMN_BALANCE + " INT);";
+            COLUMN_BALANCE + " INT," +
+            COLUMN_FISHAMOUNT + " INT," +
+            COLUMN_BUCKETSIZE + " INT);";
 
     private SQLiteDatabase database;
 
@@ -49,9 +51,11 @@ public class DBHelperFish extends SQLiteOpenHelper {
     public long insert(User user, Context context) {
         database = getWritableDatabase(); // get access to write the database
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, user.getUserName());
-        values.put(COLUMN_BALANCE, user.getRate());
-        values.put(COLUMN_NAME, user.getScore());
+        values.put(COLUMN_ID, user.getId());
+        values.put(COLUMN_BALANCE, user.getBalance());
+        values.put(COLUMN_NAME, user.getUserName());
+        values.put(COLUMN_FISHAMOUNT, user.getFishAmount());
+        values.put(COLUMN_BUCKETSIZE, user.getBucketSize());
 
         // stored as Binary Large OBject ->  BLOB
 //        try {

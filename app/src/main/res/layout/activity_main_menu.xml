@@ -98,13 +98,33 @@
                 android:orientation="horizontal"
                 android:background="#394659"
                 >
-                <TextView
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="20"
-                    android:id="@+id/tvSave2"
+                    android:layout_gravity="center">
+                <TextView
+                    android:textSize="15dp"
+                    android:id="@+id/tvUserName2"
                     android:text="UserName"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    />
+                <EditText
+                    android:id="@+id/etEditUser2"
+                    android:textSize="15dp"
+                    android:hint="UserName"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:imeActionLabel="Done"
+                    android:singleLine="true"/>
+                </FrameLayout>
                 <TextView
                     android:id="@+id/tvBalance2"
                     android:layout_weight="5"
@@ -121,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
+
             </LinearLayout>
                 <LinearLayout
                     android:layout_width="300dp"
@@ -128,13 +149,33 @@
                     android:orientation="horizontal"
                     android:background="#394659"
                     >
-                    <TextView
-                        android:layout_weight="20"
-                        android:id="@+id/tvSave3"
-                        android:text="UserName"
-                        android:textColor="@color/white"
+                    <FrameLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:textSize="15dp"
+                            android:id="@+id/tvUserName3"
+                            android:text="UserName"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            />
+                        <EditText
+                            android:id="@+id/etEditUser3"
+                            android:textSize="15dp"
+                            android:hint="UserName"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:imeActionLabel="Done"
+                            android:singleLine="true"/>
+                    </FrameLayout>
                     <TextView
                         android:id="@+id/tvBalance3"
                         android:layout_weight="5"
