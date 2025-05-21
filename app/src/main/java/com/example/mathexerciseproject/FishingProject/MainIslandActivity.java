@@ -45,6 +45,7 @@ public class MainIslandActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainIslandActivity.this, MainMenuActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         //go to FishingActivity
@@ -54,13 +55,16 @@ public class MainIslandActivity extends AppCompatActivity {
                 if(selectedUser.getFishAmount()<=selectedUser.getBucketSize()){
                     Intent intent = new Intent(MainIslandActivity.this, FishingActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
     }
 
     private void intents() {
-        setSelectedUser(); //sets the user of this activity to be the same as the selected user in the main menu
+        if(selectedUser==null) {
+            setSelectedUser(); //sets the user of this activity to be the same as the selected user in the main menu
+        }
         updateFishAmount(); //updates the fishAmount value in case user returns with fish from docks
     }
 

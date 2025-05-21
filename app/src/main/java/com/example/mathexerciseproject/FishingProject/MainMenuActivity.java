@@ -100,6 +100,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainMenuActivity.this, MainIslandActivity.class);
                 intent.putExtra(KEY1, selectedId);//sends the id of the slected save so that I can retrieve the selected user from the database in MainIslandActivity
                 startActivity(intent);
+                finish();
             }
         });
         /*
