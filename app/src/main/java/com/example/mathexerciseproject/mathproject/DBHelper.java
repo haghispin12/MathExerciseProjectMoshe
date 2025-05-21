@@ -151,29 +151,29 @@ public class DBHelper extends SQLiteOpenHelper {
 //        // INPUT: notice two options rawQuery should look like
 //        // rawQuery("SELECT id, name FROM people WHERE name = ? AND id = ?", new String[] {"David", "2"});
 //        // OUTPUT: arraylist - number of elements accordingly
-//        public ArrayList<User> select(String column,String[] values)
-//        {
-//            database = getReadableDatabase(); // get access to read the database
-//            ArrayList<User> users = new ArrayList<>();
-//            // Two options,
-//            // since query cannot be created in compile time there is no difference
-//            //Cursor cursor = database.rawQuery(query, values);
-//            Cursor cursor= database.query(TABLE_RECORD, allColumns, COLUMN_NAME +" = ? ", values, null, null, null); // cursor points at a certain row
-//            if (cursor.getCount() > 0) {
-//                while (cursor.moveToNext()) {
-//                    String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
-//                    int rating = cursor.getInt(cursor.getColumnIndex(COLUMN_RATE));
-//                    byte[] bytes = cursor.getBlob(cursor.getColumnIndex(COLUMN_PICTURE));
-//                    int score = cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
-//                    Bitmap bitmap = getImage(bytes);
-//                    long id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
-//                    User user= new User(id,name,rating,bitmap,score);
-//                    users.add(user);
-//                }// end while
-//            } // end if
-//            database.close();
-//            return users;
-//        }
+        public ArrayList<User> select(String column,String[] values)
+        {
+            database = getReadableDatabase(); // get access to read the database
+            ArrayList<User> users = new ArrayList<>();
+            // Two options,
+            // since query cannot be created in compile time there is no difference
+            //Cursor cursor = database.rawQuery(query, values);
+            Cursor cursor= database.query(TABLE_RECORD, allColumns, COLUMN_NAME +" = ? ", values, null, null, null); // cursor points at a certain row
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+                    int rating = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATE));
+                    byte[] bytes = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_PICTURE));
+                    int score = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SCORE));
+                    Bitmap bitmap = getImage(bytes);
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                    User user= new User(id,name,rating,bitmap,score);
+                    users.add(user);
+                }// end while
+            } // end if
+            database.close();
+            return users;
+        }
 //
     public static byte[] getBytes(Context context, Uri uri) throws IOException {
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);

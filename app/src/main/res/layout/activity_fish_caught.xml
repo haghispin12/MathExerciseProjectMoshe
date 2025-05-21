@@ -27,11 +27,11 @@
             />
         <Button
             android:layout_marginTop="5dp"
-            android:id="@+id/btnShop"
+            android:id="@+id/btnLeaveDocks"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="#2B4270"
-            android:text="Go To Shop"
+            android:text="leave docks"
             android:textColor="#F1F1F1"
             />
         <Button

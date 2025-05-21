@@ -79,7 +79,7 @@ public class GameView extends View {
         float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
         fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
         bar = new Bar(100, fishSpeed+5, Gravity, 800f, 0);
-        pBar = new ProgressBar(130, 230, false, 3, gameHeight, bar.getBarRBound());
+        pBar = new ProgressBar(130, 630, false, 3, gameHeight, bar.getBarRBound());
         fish1.getPaint().setColor(Color.rgb(0,102,204));
         bar.getPaint().setColor(Color.GREEN);
         pBar.getPaint().setColor(Color.RED);

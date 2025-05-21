@@ -20,6 +20,13 @@ public class User {
         this.bucketSize = bucketSize;
         this.fishAmount = fishAmount;
     }
+    public User(User user){
+        this.userName = user.getUserName();
+        this.balance = user.getBalance();
+        this.id = user.getId();
+        this.bucketSize = user.getBucketSize();
+        this.fishAmount = user.getFishAmount();
+    }
 
     /*
     Getters
