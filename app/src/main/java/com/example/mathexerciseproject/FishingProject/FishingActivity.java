@@ -1,6 +1,7 @@
 package com.example.mathexerciseproject.FishingProject;
 
-import static com.example.mathexerciseproject.FishingProject.Consts.ISCAUGHT;
+import static com.example.mathexerciseproject.FishingProject.Consts.*;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +21,21 @@ public class FishingActivity extends AppCompatActivity {
     private Button btnStop;
     private Button btnFish;
     private TextView tvFishScore;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fishing);
-        InnitViews();
-
-        onClickListeners();
+        InnitViews();//explanation
+        intents();//Retrieve data from previous activity
+        onClickListeners();//explanation
     }
+
+    private void intents() {
+        Intent intent = getIntent();
+        id = intent.getIntExtra(ID_KEY, 0);
+    }
+
     private void onClickListeners() {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +77,7 @@ public class FishingActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // It's still important to tell the GameView to stop when the Activity pauses
+        //tell the GameView to stop when the Activity pauses
         if (gameView != null) {
             gameView.stopGameLoop();
         }
@@ -84,6 +92,7 @@ public class FishingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FishCaughtActivity.class);
         boolean n = gameView.getIsCaught();
         intent.putExtra(ISCAUGHT, gameView.getIsCaught());
+        intent.putExtra(ID_KEY, id);//save the id of the character that caught/lost the fish
         startActivity(intent);
         finish();
     }

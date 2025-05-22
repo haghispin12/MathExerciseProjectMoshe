@@ -18,6 +18,7 @@ public class FishCaughtActivity extends AppCompatActivity {
     private TextView tvFishCaught;
     private Boolean isCaught;
     private int fishcaught;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,10 @@ public class FishCaughtActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FishCaughtActivity.this, MainIslandActivity.class);
+                intent.putExtra(ID_KEY, id);
                 if (isCaught){
                     fishcaught = 1;
-                    intent.putExtra(KEY2, fishcaught);
+                    intent.putExtra(FISH_CAUGHT_AMOUNT, fishcaught);
                 }
                 startActivity(intent);
             }
@@ -49,6 +51,7 @@ public class FishCaughtActivity extends AppCompatActivity {
 
     public void intent(){
         Intent intent = getIntent();
+        id = intent.getIntExtra(ID_KEY, 0);
         isCaught = intent.getBooleanExtra(ISCAUGHT, false);
         Log.d("","");
     }

@@ -20,9 +20,12 @@ import java.util.ArrayList;
 public class MainIslandActivity extends AppCompatActivity {
     private Button btnMainMenu;
     private Button btnGoFish;
+    private Button btnGoShop;
     private TextView tvWelcome;
     private User selectedUser;
     private DBHelperFish dbHelperFish;
+    private int selectedId;
+    private int fishPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,19 @@ public class MainIslandActivity extends AppCompatActivity {
 
 
     private void onClickers() {
+        //Sell Fish
+        btnGoShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fishPrice = 100;
+                int income = fishPrice*selectedUser.getFishAmount();
+                selectedUser.setFishAmount(0);
+                selectedUser.setBalance(income);
+                dbHelperFish.update(selectedUser);
+                Toast toast = Toast.makeText(MainIslandActivity.this, "Balance: "+selectedUser.getBalance()+"!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
         //go to MainMenuActivity
         btnMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +70,7 @@ public class MainIslandActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(selectedUser.getFishAmount()<=selectedUser.getBucketSize()){
                     Intent intent = new Intent(MainIslandActivity.this, FishingActivity.class);
+                    intent.putExtra(ID_KEY, selectedId);
                     startActivity(intent);
                     finish();
                 }
@@ -62,14 +79,13 @@ public class MainIslandActivity extends AppCompatActivity {
     }
 
     private void intents() {
-        if(selectedUser==null) {
-            setSelectedUser(); //sets the user of this activity to be the same as the selected user in the main menu
-        }
+        setSelectedUser(); //sets the user of this activity to be the same as the selected user in the main menu
         updateFishAmount(); //updates the fishAmount value in case user returns with fish from docks
     }
 
     private void innitViews() {
         btnMainMenu = findViewById(R.id.btnMainMenu);
+        btnGoShop = findViewById(R.id.btnGoShop);
         tvWelcome = findViewById(R.id.tvWelcome);
         btnGoFish = findViewById(R.id.btnGoFish);
     }
@@ -81,14 +97,14 @@ public class MainIslandActivity extends AppCompatActivity {
 
     private void setSelectedUser(){
         Intent intent = getIntent();
-        int selectedId = intent.getIntExtra(KEY1, 0);
+        selectedId = intent.getIntExtra(ID_KEY, intent.getIntExtra(KEY1, 0));
         ArrayList<User> users = dbHelperFish.selectAll();
         selectedUser = new User(users.get(selectedId));
     }
 
     private void updateFishAmount() {
         Intent intent = getIntent();
-        int fishCaught = intent.getIntExtra(KEY2, 0);
+        int fishCaught = intent.getIntExtra(FISH_CAUGHT_AMOUNT, 0);
         int fishAmount = selectedUser.getFishAmount() + fishCaught;
         selectedUser.setFishAmount(fishAmount);
         dbHelperFish.update(selectedUser);
