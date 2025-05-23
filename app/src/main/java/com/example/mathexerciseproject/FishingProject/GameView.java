@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -38,7 +39,8 @@ public class GameView extends View {
             if (isLooping) {
                 handler.postDelayed(this, 30);
             }
-            if(fish1.getXPosition()>bar.getBarX() && fish1.getXPosition()<bar.getBarX()+bar.getBarLength()){
+            //"fish1.getXPosition()-fish1.getRadius()/2" is to be more forgivingto the player, this way you only need the majority of the fish to overlap the bar
+            if(fish1.getXPosition()-fish1.getRadius()/2>bar.getBarX() && fish1.getXPosition()+fish1.getRadius()/2<bar.getBarX()+bar.getBarLength()){
                 pBar.setOverLap(true);
             }else{
                 pBar.setOverLap(false);
@@ -75,12 +77,12 @@ public class GameView extends View {
 
     private void init() {
         boolean Gravity = true;
-        float fishStartX = 130;
-        float fishSpeed = 10f; // Adjusted to match baseSpeed in Fish
-        fish1 = new fish1(fishStartX, fishSpeed, 130f, 1000f); //the number 130 is keeping in mind the radius of the circle 30f
-        bar = new Bar(100, fishSpeed+5, Gravity, 800f, 0);
-        pBar = new ProgressBar(130, 630, false, 3, gameHeight, bar.getBarRBound());
+        float fishStartX = 100f;
+        float fishSpeed = 10f;
+        fish1 = new fish1(fishStartX, fishSpeed, 100f, 1000f); //left and right are to set the boundaries of the fish
         fish1.getPaint().setColor(Color.rgb(0,102,204));
+        bar = new Bar(100, fishSpeed+3, Gravity, 800f, 0);
+        pBar = new ProgressBar(130, 630, false, 3, gameHeight, bar.getBarRBound());
         bar.getPaint().setColor(Color.GREEN);
         pBar.getPaint().setColor(Color.RED);
         scoreTime = pBar.getScoreTime();
@@ -104,8 +106,6 @@ public class GameView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        fish1.leftBound = 130;
-        fish1.rightBound = w -130;
         Log.d("status DDD", "h = "+h+"  w = "+w);
     }
 
@@ -114,16 +114,16 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (canvas != null) {
-//            Resources res = getResources();
-//            Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.fishing_activity_background2);
-//            canvas.drawBitmap(bitmap, 0, 0, fish1.getPaint());
+            Bitmap bitmap = getRescaledFishIcon();
             canvas.drawColor(Color.rgb(0,51,102));
 
             float fishX = fish1.getXPosition();
+            canvas.drawRect(100, gameHeight-50, 1000f, gameHeight+50, fish1.getPaint());
             canvas.drawRect(pBar.getRectLeft(),pBar.getRectTop(),pBar.getRectRight(),pBar.getRectBottom(),pBar.getPaint());
             canvas.drawRect(bar.getBarX(), gameHeight - 50, bar.getBarX() + bar.getBarLength(), gameHeight + 50, bar.getPaint());
-            canvas.drawCircle(fishX, gameHeight, fish1.getRadius(), fish1.getPaint());
-            canvas.drawRect(100, gameHeight+50, 1000f, gameHeight, fish1.getPaint());
+            canvas.drawBitmap(bitmap, fishX-bitmap.getWidth()/2f, gameHeight-bitmap.getHeight()/2f, fish1.getPaint());
+//            canvas.drawCircle(fishX, gameHeight, fish1.getRadius(), fish1.getPaint());
+
         }
     }
 
@@ -149,5 +149,14 @@ public class GameView extends View {
      */
     public void setIsFish(boolean isFish){
         bar.setPressing(isFish);
+    }
+
+    public Bitmap getRescaledFishIcon(){
+        Resources res = getResources();
+        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.fish_icon1);
+        int newWidth = 100;
+        int newHeight = 100;
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+        return scaledBitmap;
     }
 }

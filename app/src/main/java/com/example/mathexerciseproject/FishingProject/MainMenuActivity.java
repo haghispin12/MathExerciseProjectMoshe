@@ -16,6 +16,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.mathexerciseproject.R;
@@ -42,7 +43,6 @@ public class MainMenuActivity extends AppCompatActivity {
     private User user1;
     private User user2;
     private User user3;
-    private LinearLayout ll1;
     private int selectedId = 0;
 
 
@@ -69,6 +69,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateViews() {
+        //Make the button select1 glow blue by default because it is the selected character by default
+        if(selectedId == 0){
+            btnSelect1.setBackgroundColor(Color.parseColor("#FF252E47"));
+            btnSelect2.setBackgroundColor(Color.parseColor("#FF3E3E3E"));
+            btnSelect3.setBackgroundColor(Color.parseColor("#FF3E3E3E"));
+        }
+
         if(user1.getUserName()!=null) {
             tvUserName1.setText(user1.getUserName());
             etEditUser1.setText(tvUserName1.getText());
@@ -92,6 +99,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -260,7 +268,6 @@ public class MainMenuActivity extends AppCompatActivity {
         tvBalance3 = findViewById(R.id.tvBalance3);
         btnSelect3 = findViewById(R.id.btnSelect3);
         btnSettings = findViewById(R.id.btnSettings);
-        ll1 = findViewById(R.id.ll1);
     }
     public void texts(){
         etEditUser1.setVisibility(View.INVISIBLE);

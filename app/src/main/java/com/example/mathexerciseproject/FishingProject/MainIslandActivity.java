@@ -48,8 +48,9 @@ public class MainIslandActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fishPrice = 100;
                 int income = fishPrice*selectedUser.getFishAmount();
+                int oldBalance = selectedUser.getBalance();
                 selectedUser.setFishAmount(0);
-                selectedUser.setBalance(income);
+                selectedUser.setBalance(income+oldBalance);
                 dbHelperFish.update(selectedUser);
                 Toast toast = Toast.makeText(MainIslandActivity.this, "Balance: "+selectedUser.getBalance()+"!", Toast.LENGTH_SHORT);
                 toast.show();

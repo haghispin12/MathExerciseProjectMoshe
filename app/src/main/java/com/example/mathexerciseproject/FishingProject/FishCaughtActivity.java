@@ -44,6 +44,7 @@ public class FishCaughtActivity extends AppCompatActivity {
                     intent.putExtra(FISH_CAUGHT_AMOUNT, fishcaught);
                 }
                 startActivity(intent);
+                finish();
             }
         });
     }

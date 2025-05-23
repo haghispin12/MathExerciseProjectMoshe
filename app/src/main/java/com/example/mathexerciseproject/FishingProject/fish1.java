@@ -2,13 +2,14 @@ package com.example.mathexerciseproject.FishingProject;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.Random;
 
 public class fish1 {
 
     private Paint paint = new Paint(Color.rgb(51,153,255));
-    private float radius;
+    private final float radius;
     private float xPosition;
     private float baseSpeed = 25f;
     private float dashSpeedMultiplier = 2.5f;
@@ -27,10 +28,10 @@ public class fish1 {
     private int moveInterval = 30; // Average interval for state change attempts
 
     public fish1(float startX, float moveSpeed, float left, float right) {
-        this.radius = 30;
+        this.radius = 50;
         this.xPosition = startX;
         this.baseSpeed = moveSpeed;
-        this.leftBound = 300;
+        this.leftBound = left;
         this.rightBound = right;
         this.currentState = random.nextBoolean() ? State.MOVING_RIGHT : State.MOVING_LEFT;
         // Initialize durations with a random value
@@ -43,6 +44,7 @@ public class fish1 {
     public void updatePosition() {
         stateTimer++;
 
+        //Define the states and give them meaning in relation ro base speed
         switch (currentState) {
             case MOVING_LEFT:
                 xPosition -= baseSpeed;
@@ -60,19 +62,22 @@ public class fish1 {
                 break;
         }
 
-        if (xPosition < leftBound) {
-            xPosition = leftBound;
+        //radius is used to take into acount the fact that xPosition equals the center of the fish and not the left/right side
+        if (xPosition-radius < leftBound) { //
+            xPosition = leftBound+radius;
+            Log.d("StatusAAAA", "updatePosition: left " + xPosition+" LeftBound: " + leftBound);
             currentState = State.MOVING_RIGHT;
             stateTimer = 0;
-        } else if (xPosition > rightBound) {
-            xPosition = rightBound;
+        } else if (xPosition+radius > rightBound) {
+            xPosition = rightBound-radius;
+            Log.d("StatusAAAA", "updatePosition: right "+ xPosition + " Rightbound: " + rightBound);
             currentState = State.MOVING_LEFT;
             stateTimer = 0;
         }
 
         if (stateTimer >= moveInterval) {
             stateTimer = 0;
-            moveInterval = random.nextInt(40) + 20;
+            moveInterval = random.nextInt(40) + 20;//min = 20 | max = 40
 
             float chance = random.nextFloat();
 
@@ -82,7 +87,7 @@ public class fish1 {
                 dashDuration = random.nextInt(maxDashDuration - minDashDuration + 1) + minDashDuration;
                 moveInterval = dashDuration;
                 stateTimer = 0;
-            } else if (chance < 0.2f) {
+            } else if (chance < 0.5f) {
                 currentState = State.PAUSING;
                 // Set a new random pause duration
                 pauseDuration = random.nextInt(maxPauseDuration - minPauseDuration + 1) + minPauseDuration;

@@ -5,6 +5,7 @@ import static com.example.mathexerciseproject.FishingProject.Consts.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -58,9 +59,17 @@ public class FishingActivity extends AppCompatActivity {
                         break;
                     case MotionEvent.ACTION_UP:
                         gameView.setIsFish(false);
+                        view.performClick();
+                        break;
                 }
-                    return false;
+                    return true;
 
+            }
+        });
+        gameView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
             }
         });
 
